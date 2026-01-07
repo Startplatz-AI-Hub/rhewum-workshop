@@ -1,0 +1,3000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="COBRAIN AI Workshop - Empowering Sales with Artificial Intelligence" />
+  <meta name="theme-color" content="#6C5CE7" />
+  
+  <title>COBRAIN AI Workshop | Sales & Business Development</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web@2.0.3"></script>
+  
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%236C5CE7' width='100' height='100' rx='0'/%3E%3Ctext x='50' y='70' font-size='50' text-anchor='middle' fill='white' font-family='system-ui'%3ECB%3C/text%3E%3C/svg%3E">
+  
+  <style>
+    :root {
+      --color-primary: #6C5CE7;
+      --color-primary-hover: #5B4BD4;
+      --color-primary-light: #A29BFE;
+      --color-primary-dark: #4834D4;
+      --color-black: #000000;
+      --color-gray-900: #171717;
+      --color-gray-800: #262626;
+      --color-gray-700: #404040;
+      --color-gray-600: #525252;
+      --color-gray-500: #737373;
+      --color-gray-400: #A3A3A3;
+      --color-gray-300: #D4D4D4;
+      --color-gray-200: #E5E5E5;
+      --color-gray-100: #F5F5F5;
+      --color-white: #FFFFFF;
+      --color-gold: #FFD700;
+      --color-success: #10B981;
+      --color-warning: #F59E0B;
+      --color-error: #EF4444;
+      --color-info: #3B82F6;
+      --font-display: 'Outfit', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    html {
+      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
+      overflow-y: scroll;
+    }
+    
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--color-black);
+      background: var(--color-black);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    
+    /* Preloader */
+    .preloader {
+      position: fixed;
+      inset: 0;
+      background: var(--color-black);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      transition: opacity 0.5s, visibility 0.5s;
+    }
+    
+    .preloader.hidden { opacity: 0; visibility: hidden; }
+    
+    .preloader-logo {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--color-white);
+      animation: pulse 1.5s ease infinite;
+    }
+    
+    .preloader-logo span { color: var(--color-primary); }
+    
+    .preloader-bar {
+      width: 200px;
+      height: 4px;
+      background: var(--color-gray-800);
+      margin-top: 24px;
+      overflow: hidden;
+    }
+    
+    .preloader-progress {
+      height: 100%;
+      background: var(--color-primary);
+      animation: loadingBar 2s ease infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(0.98); }
+    }
+    
+    @keyframes loadingBar {
+      0% { width: 0%; }
+      50% { width: 70%; }
+      100% { width: 100%; }
+    }
+    
+    /* ==========================================
+       FULLSCREEN SECTIONS
+       ========================================== */
+    .section {
+      min-height: 100vh;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .section-light {
+      background: var(--color-white);
+      color: var(--color-black);
+    }
+    
+    .section-dark {
+      background: var(--color-black);
+      color: var(--color-white);
+    }
+    
+    .section-alt {
+      background: var(--color-gray-100);
+      color: var(--color-black);
+    }
+    
+    .section-primary {
+      background: var(--color-primary);
+      color: var(--color-white);
+    }
+    
+    .section-gradient {
+      background: linear-gradient(135deg, var(--color-black) 0%, var(--color-gray-900) 50%, #1a1a2e 100%);
+      color: var(--color-white);
+    }
+    
+    .container {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    
+    .container-narrow {
+      max-width: 900px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    
+    /* Section Header */
+    .section-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    
+    .section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--color-primary);
+      color: var(--color-white);
+      padding: 6px 16px;
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+    }
+    
+    .section-dark .section-badge {
+      background: var(--color-white);
+      color: var(--color-black);
+    }
+    
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    
+    .section-title .highlight { color: var(--color-primary); }
+    .section-dark .section-title .highlight { color: var(--color-primary-light); }
+    
+    .section-subtitle {
+      font-size: 1.25rem;
+      color: var(--color-gray-600);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .section-dark .section-subtitle { color: var(--color-gray-400); }
+    
+    /* ==========================================
+       HERO SECTION
+       ========================================== */
+    .hero {
+      background: var(--color-black);
+      position: relative;
+    }
+    
+    .hero-mesh {
+      position: absolute;
+      inset: 0;
+      opacity: 0.3;
+    }
+    
+    /* Global Mesh - Always visible */
+    .global-mesh {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.5;
+    }
+    
+    .global-mesh.interactive {
+      pointer-events: auto;
+    }
+    
+    /* Video Background */
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+    
+    .hero-video video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.4;
+    }
+    
+    .hero-video::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.3) 0%,
+        rgba(0,0,0,0.6) 50%,
+        rgba(0,0,0,0.9) 100%
+      );
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 800px;
+      padding-right: 100px;
+    }
+    
+    @media (max-width: 1200px) {
+      .hero-content {
+        max-width: 1000px;
+        padding-right: 0;
+      }
+    }
+    
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--color-primary);
+      color: var(--color-white);
+      padding: 10px 24px;
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 32px;
+      animation: fadeInDown 0.8s ease;
+    }
+    
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 10vw, 7rem);
+      font-weight: 800;
+      line-height: 1;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      animation: fadeInUp 0.8s ease 0.2s both;
+    }
+    
+    .hero-title .white { color: var(--color-white); }
+    .hero-title .purple { color: var(--color-primary); }
+    
+    .hero-subtitle {
+      font-size: 1.5rem;
+      color: var(--color-gray-400);
+      margin-bottom: 48px;
+      animation: fadeInUp 0.8s ease 0.4s both;
+    }
+    
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 64px;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.8s ease 0.6s both;
+    }
+    
+    .hero-stat { text-align: center; }
+    
+    .hero-stat-value {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      font-weight: 800;
+      color: var(--color-white);
+    }
+    
+    .hero-stat-label {
+      font-size: 12px;
+      color: var(--color-gray-500);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    
+    @keyframes fadeInDown {
+      0% { opacity: 0; transform: translateY(-30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Hero Presenter - Bold Glossy Card with Parallax */
+    .hero-presenter {
+      position: absolute;
+      right: 80px;
+      top: 50%;
+      transform: translateY(-50%);
+      animation: fadeInRight 1s ease 0.6s both;
+      z-index: 10;
+      perspective: 1000px;
+    }
+    
+    .presenter-card {
+      position: relative;
+      transition: transform 0.1s ease-out;
+      transform-style: preserve-3d;
+    }
+    
+    .presenter-image {
+      width: 280px;
+      height: 350px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.5),
+        0 0 80px rgba(108, 92, 231, 0.3);
+    }
+    
+    .presenter-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: contrast(1.05) saturate(1.1);
+    }
+    
+    /* Glossy overlay effect */
+    .presenter-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.15) 0%,
+        transparent 50%,
+        rgba(0, 0, 0, 0.3) 100%
+      );
+      z-index: 2;
+      pointer-events: none;
+    }
+    
+    /* Glossy shine effect */
+    .presenter-image::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 70%
+      );
+      z-index: 3;
+      pointer-events: none;
+      transform: rotate(-45deg);
+      animation: glossShine 4s ease-in-out infinite;
+    }
+    
+    @keyframes glossShine {
+      0%, 100% { transform: translateX(-100%) rotate(-45deg); }
+      50% { transform: translateX(100%) rotate(-45deg); }
+    }
+    
+    /* Border accent */
+    .presenter-image-border {
+      position: absolute;
+      inset: -3px;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light), var(--color-primary));
+      z-index: -1;
+    }
+    
+    .presenter-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 24px;
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.95) 0%,
+        rgba(0, 0, 0, 0.8) 50%,
+        transparent 100%
+      );
+      z-index: 4;
+    }
+    
+    .presenter-label {
+      font-size: 10px;
+      color: var(--color-primary-light);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    
+    .presenter-name {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--color-white);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+    
+    .presenter-role {
+      font-size: 13px;
+      color: var(--color-primary);
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    
+    .presenter-company {
+      font-size: 11px;
+      color: var(--color-gray-400);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    
+    @keyframes fadeInRight {
+      0% { opacity: 0; transform: translateY(-50%) translateX(80px); }
+      100% { opacity: 1; transform: translateY(-50%) translateX(0); }
+    }
+    
+    @media (max-width: 1200px) {
+      .hero-presenter {
+        position: relative;
+        right: auto;
+        top: auto;
+        transform: none;
+        margin-top: 48px;
+        animation: fadeInUp 0.8s ease 0.8s both;
+      }
+      
+      .presenter-image {
+        width: 220px;
+        height: 280px;
+      }
+    }
+    
+    /* ==========================================
+       NEWSROOM SECTION
+       ========================================== */
+    .newsroom-section {
+      padding: 0 !important;
+      position: relative;
+      z-index: 5;
+    }
+    
+    .newsroom-container {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      height: 100vh;
+      width: 100%;
+    }
+    
+    .newsroom-visual {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .newsroom-hero-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(30%) contrast(1.1);
+    }
+    
+    .newsroom-visual-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(108, 92, 231, 0.3) 0%,
+        rgba(0, 0, 0, 0.7) 100%
+      );
+    }
+    
+    .newsroom-visual-badge {
+      position: absolute;
+      top: 40px;
+      left: 40px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 12px 20px;
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--color-white);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    
+    .live-dot {
+      width: 10px;
+      height: 10px;
+      background: var(--color-error);
+      border-radius: 50%;
+      animation: live-pulse 1.5s ease infinite;
+    }
+    
+    @keyframes live-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.2); }
+    }
+    
+    .newsroom-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px;
+      background: var(--color-black);
+      position: relative;
+      z-index: 10;
+    }
+    
+    .newsroom-header {
+      margin-bottom: 40px;
+    }
+    
+    .newsroom-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 800;
+      color: var(--color-white);
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+    
+    .newsroom-subtitle {
+      font-size: 1.1rem;
+      color: var(--color-gray-400);
+    }
+    
+    .newsroom-highlights {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    
+    .highlight-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      background: rgba(255, 255, 255, 0.03);
+      border-left: 3px solid var(--color-primary);
+      transition: all 0.3s ease;
+    }
+    
+    .highlight-item:hover {
+      background: rgba(108, 92, 231, 0.1);
+      transform: translateX(8px);
+    }
+    
+    .highlight-icon {
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+    
+    .highlight-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    
+    .highlight-text strong {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-white);
+    }
+    
+    .highlight-text span {
+      font-size: 13px;
+      color: var(--color-gray-400);
+    }
+    
+    .newsroom-message {
+      margin-bottom: 32px;
+      padding: 24px;
+      background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), transparent);
+      border: 1px solid rgba(108, 92, 231, 0.3);
+    }
+    
+    .message-line {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--color-white);
+      margin-bottom: 8px;
+    }
+    
+    .message-line:last-child {
+      margin-bottom: 0;
+    }
+    
+    .message-line .dim {
+      color: var(--color-gray-500);
+    }
+    
+    .highlight-text-inline {
+      color: var(--color-primary);
+      font-weight: 700;
+    }
+    
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--color-primary);
+      border: none;
+      color: var(--color-white);
+      padding: 16px 28px;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      align-self: flex-start;
+      position: relative;
+      z-index: 100;
+      cursor: pointer;
+    }
+    
+    .download-btn:hover {
+      background: var(--color-primary-hover);
+      box-shadow: 0 0 30px rgba(108, 92, 231, 0.4);
+      transform: translateY(-2px);
+    }
+    
+    .download-btn i {
+      font-size: 18px;
+    }
+    
+    @media (max-width: 1000px) {
+      .newsroom-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 40vh 1fr;
+      }
+      
+      .newsroom-content {
+        padding: 40px 30px;
+      }
+      
+      .newsroom-highlights {
+        gap: 12px;
+        margin-bottom: 24px;
+      }
+      
+      .highlight-item {
+        padding: 12px 16px;
+      }
+    }
+
+    /* ==========================================
+       KEY MESSAGE SECTION
+       ========================================== */
+    .key-message {
+      background: var(--color-black);
+      position: relative;
+    }
+    
+    .key-message::before {
+      content: '"';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -60%);
+      font-family: var(--font-display);
+      font-size: 40vw;
+      color: var(--color-gray-900);
+      opacity: 0.3;
+      pointer-events: none;
+    }
+    
+    .key-message-text {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 4vw, 3.5rem);
+      font-weight: 700;
+      color: var(--color-white);
+      text-align: center;
+      max-width: 1000px;
+      line-height: 1.3;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .key-message-text .highlight { color: var(--color-primary); }
+    
+    /* ==========================================
+       HEADLINE / STATS CARDS
+       ========================================== */
+    .headline-card {
+      background: linear-gradient(135deg, var(--color-gray-900), var(--color-gray-800));
+      border: 1px solid var(--color-gray-700);
+      padding: 32px;
+      text-align: center;
+    }
+    
+    .headline-source {
+      font-size: 11px;
+      color: var(--color-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+    
+    .headline-stat {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      font-weight: 800;
+      color: var(--color-white);
+      margin-bottom: 8px;
+    }
+    
+    .headline-text {
+      font-size: 1rem;
+      color: var(--color-gray-400);
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+    }
+    
+    /* ==========================================
+       CARDS
+       ========================================== */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    
+    .card {
+      background: var(--color-white);
+      border: 2px solid var(--color-black);
+      padding: 32px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 8px 8px 0 var(--color-black);
+    }
+    
+    .card-dark {
+      background: var(--color-gray-900);
+      border-color: var(--color-gray-800);
+      color: var(--color-white);
+    }
+    
+    .card-dark:hover { box-shadow: 8px 8px 0 var(--color-primary); }
+    
+    .card-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--color-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    
+    .card-icon i { font-size: 28px; color: var(--color-white); }
+    
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 1.125rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    
+    .card-text {
+      font-size: 14px;
+      color: var(--color-gray-600);
+      line-height: 1.6;
+    }
+    
+    .card-dark .card-text { color: var(--color-gray-400); }
+    
+    /* ==========================================
+       MEME SECTION
+       ========================================== */
+    .meme-container {
+      background: var(--color-gray-900);
+      border: 2px solid var(--color-gray-700);
+      padding: 24px;
+      text-align: center;
+      max-width: 600px;
+    }
+    
+    .meme-emoji {
+      font-size: 80px;
+      margin-bottom: 16px;
+    }
+    
+    .meme-text {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--color-white);
+      line-height: 1.4;
+    }
+    
+    .meme-text .small {
+      display: block;
+      font-size: 1rem;
+      color: var(--color-gray-400);
+      margin-top: 8px;
+    }
+    
+    /* ==========================================
+       PROMPTING PILLARS
+       ========================================== */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    
+    @media (max-width: 900px) {
+      .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    
+    .pillar {
+      text-align: center;
+      padding: 40px 24px;
+      background: var(--color-gray-900);
+      border: 2px solid var(--color-gray-800);
+      transition: all 0.3s;
+    }
+    
+    .pillar:hover {
+      border-color: var(--color-primary);
+      transform: translateY(-4px);
+    }
+    
+    .pillar-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 20px;
+      background: var(--color-black);
+      border: 2px solid var(--color-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .pillar-icon i { font-size: 36px; color: var(--color-primary); }
+    
+    .pillar-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--color-white);
+      margin-bottom: 8px;
+    }
+    
+    .pillar-desc {
+      font-size: 14px;
+      color: var(--color-gray-400);
+    }
+    
+    /* ==========================================
+       PROMPT EXAMPLE
+       ========================================== */
+    .prompt-comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 32px;
+    }
+    
+    @media (max-width: 800px) {
+      .prompt-comparison { grid-template-columns: 1fr; }
+    }
+    
+    .prompt-box {
+      background: var(--color-black);
+      border: 2px solid var(--color-gray-800);
+      padding: 24px;
+    }
+    
+    .prompt-box-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    
+    .prompt-box-header.bad { color: var(--color-error); }
+    .prompt-box-header.good { color: var(--color-success); }
+    
+    .prompt-box-content {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--color-gray-300);
+      line-height: 1.7;
+      white-space: pre-wrap;
+    }
+    
+    .prompt-box-content .role { color: #F59E0B; }
+    .prompt-box-content .context { color: #10B981; }
+    .prompt-box-content .task { color: #3B82F6; }
+    .prompt-box-content .format { color: #EC4899; }
+    
+    /* ==========================================
+       ADVANCED TECHNIQUES
+       ========================================== */
+    .technique-card {
+      background: var(--color-gray-900);
+      border: 2px solid var(--color-gray-800);
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+    
+    .technique-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    
+    .technique-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--color-white);
+    }
+    
+    .technique-badge {
+      background: var(--color-primary);
+      color: var(--color-white);
+      padding: 4px 12px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    
+    .technique-badge.advanced {
+      background: var(--color-gold);
+      color: var(--color-black);
+    }
+    
+    .technique-desc {
+      color: var(--color-gray-400);
+      margin-bottom: 16px;
+    }
+    
+    .technique-example {
+      background: var(--color-black);
+      border-left: 3px solid var(--color-primary);
+      padding: 16px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--color-gray-300);
+    }
+    
+    .technique-source {
+      margin-top: 16px;
+      font-size: 12px;
+      color: var(--color-gray-500);
+    }
+    
+    .technique-source a {
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+    
+    /* ==========================================
+       IMAGE SECTION
+       ========================================== */
+    .image-showcase {
+      max-width: 1000px;
+      width: 100%;
+    }
+    
+    .image-showcase img {
+      width: 100%;
+      height: auto;
+      border: 2px solid var(--color-gray-800);
+    }
+    
+    /* ==========================================
+       EXERCISE SECTION
+       ========================================== */
+    .exercise-card {
+      background: var(--color-primary);
+      padding: 48px;
+      max-width: 900px;
+      width: 100%;
+    }
+    
+    .exercise-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    
+    .exercise-badge {
+      background: var(--color-black);
+      padding: 8px 20px;
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    
+    .exercise-timer {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    
+    .exercise-title {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    
+    .exercise-description {
+      font-size: 1.125rem;
+      opacity: 0.9;
+      margin-bottom: 32px;
+    }
+    
+    .exercise-steps { list-style: none; }
+    
+    .exercise-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 16px;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .exercise-step-number {
+      width: 32px;
+      height: 32px;
+      background: var(--color-black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    
+    .exercise-step-content h4 {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    
+    .exercise-step-content p {
+      font-size: 13px;
+      opacity: 0.8;
+    }
+    
+    .btn {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 14px 28px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    
+    .btn-white {
+      background: var(--color-white);
+      color: var(--color-black);
+      border-color: var(--color-white);
+    }
+    
+    .btn-white:hover {
+      background: transparent;
+      color: var(--color-white);
+    }
+    
+    /* ==========================================
+       ICE BREAKER POLL
+       ========================================== */
+    .poll-options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      max-width: 700px;
+      margin: 32px auto 0;
+    }
+    
+    @media (max-width: 600px) {
+      .poll-options { grid-template-columns: 1fr; }
+    }
+    
+    .poll-option {
+      background: var(--color-gray-900);
+      border: 2px solid var(--color-gray-700);
+      padding: 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .poll-option:hover {
+      border-color: var(--color-primary);
+      transform: translateY(-4px);
+    }
+    
+    .poll-option.selected {
+      border-color: var(--color-primary);
+      background: rgba(108, 92, 231, 0.1);
+    }
+    
+    .poll-emoji {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+    
+    .poll-label {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--color-white);
+    }
+    
+    /* ==========================================
+       WORKFLOW STEPS
+       ========================================== */
+    .workflow-steps {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    
+    .workflow-step {
+      background: var(--color-gray-900);
+      border: 2px solid var(--color-gray-700);
+      padding: 24px 32px;
+      text-align: center;
+      min-width: 150px;
+    }
+    
+    .workflow-step-icon {
+      font-size: 32px;
+      margin-bottom: 8px;
+      color: var(--color-primary);
+    }
+    
+    .workflow-step-title {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--color-white);
+    }
+    
+    .workflow-arrow {
+      font-size: 24px;
+      color: var(--color-primary);
+    }
+    
+    /* ==========================================
+       FUN FACT BOX
+       ========================================== */
+    .fun-fact {
+      background: linear-gradient(135deg, var(--color-gray-900), #1a1a2e);
+      border: 2px solid var(--color-primary);
+      border-left-width: 4px;
+      padding: 24px;
+      max-width: 700px;
+      margin: 24px auto 0;
+    }
+    
+    .fun-fact-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      color: var(--color-gold);
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    
+    .fun-fact-text {
+      color: var(--color-gray-300);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    
+    /* ==========================================
+       NAVIGATION INDICATORS
+       ========================================== */
+    .slide-nav {
+      position: fixed;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .slide-dot {
+      width: 10px;
+      height: 10px;
+      background: var(--color-gray-600);
+      border: 2px solid var(--color-gray-600);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .slide-dot:hover { background: var(--color-gray-400); }
+    
+    .slide-dot.active {
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+      transform: scale(1.2);
+    }
+    
+    /* Slide Counter */
+    .slide-counter {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      z-index: 1000;
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--color-white);
+      background: var(--color-black);
+      padding: 8px 16px;
+      border: 2px solid var(--color-gray-800);
+    }
+    
+    .slide-counter .current { color: var(--color-primary); }
+    
+    /* Block Indicator */
+    .block-indicator {
+      position: fixed;
+      top: 24px;
+      left: 24px;
+      z-index: 1000;
+      background: var(--color-black);
+      border: 2px solid var(--color-gray-800);
+      padding: 8px 16px;
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--color-primary);
+    }
+    
+    /* Navigation Hint */
+    .nav-hint {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 1000;
+      font-family: var(--font-display);
+      font-size: 11px;
+      color: var(--color-gray-500);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .nav-hint kbd {
+      background: var(--color-gray-800);
+      padding: 4px 8px;
+      color: var(--color-white);
+    }
+    
+    /* ==========================================
+       GIPHY MEME
+       ========================================== */
+    .giphy-container {
+      background: var(--color-gray-900);
+      border: 2px solid var(--color-gray-700);
+      padding: 16px;
+      text-align: center;
+      max-width: 500px;
+    }
+    
+    .giphy-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 0;
+    }
+    
+    .giphy-caption {
+      font-family: var(--font-display);
+      font-size: 14px;
+      color: var(--color-gray-400);
+      margin-top: 12px;
+      text-transform: uppercase;
+    }
+    
+    /* ==========================================
+       RESOURCE CARDS
+       ========================================== */
+    .resource-card {
+      display: block;
+      background: var(--color-gray-900);
+      border: 2px solid var(--color-gray-700);
+      padding: 32px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+    
+    .resource-card:hover {
+      border-color: var(--color-primary);
+      transform: translateY(-4px);
+      background: linear-gradient(135deg, var(--color-gray-900), #1a1a2e);
+    }
+    
+    .resource-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+    
+    .resource-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--color-white);
+      margin-bottom: 8px;
+    }
+    
+    .resource-desc {
+      font-size: 14px;
+      color: var(--color-gray-400);
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+    
+    .resource-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--color-primary);
+    }
+    
+    /* ==========================================
+       NEWS HEADLINE CARDS
+       ========================================== */
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+    }
+    
+    .news-card {
+      background: var(--color-gray-900);
+      border-left: 4px solid var(--color-error);
+      padding: 24px;
+      text-align: left;
+    }
+    
+    .news-card.warning { border-color: var(--color-warning); }
+    .news-card.info { border-color: var(--color-info); }
+    
+    .news-source {
+      font-size: 10px;
+      color: var(--color-gray-500);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+    
+    .news-headline {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-white);
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+    
+    .news-excerpt {
+      font-size: 13px;
+      color: var(--color-gray-400);
+      line-height: 1.5;
+    }
+    
+    /* ==========================================
+       SPECTRUM BAR
+       ========================================== */
+    .spectrum-container {
+      max-width: 800px;
+      width: 100%;
+    }
+    
+    .spectrum-bar {
+      display: flex;
+      height: 60px;
+      margin-bottom: 16px;
+    }
+    
+    .spectrum-segment {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--color-white);
+      text-transform: uppercase;
+    }
+    
+    .spectrum-segment.refuse { background: var(--color-error); flex: 25; }
+    .spectrum-segment.misuse { background: var(--color-warning); flex: 35; }
+    .spectrum-segment.afraid { background: var(--color-info); flex: 25; }
+    .spectrum-segment.power { background: var(--color-success); flex: 15; }
+    
+    .spectrum-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--color-gray-500);
+    }
+    
+    /* ==========================================
+       WARNING BOX
+       ========================================== */
+    .warning-box {
+      background: linear-gradient(135deg, #2d1f1f, var(--color-gray-900));
+      border: 2px solid var(--color-error);
+      border-left-width: 4px;
+      padding: 24px;
+      max-width: 700px;
+      margin: 24px auto 0;
+    }
+    
+    .warning-box-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      color: var(--color-error);
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    
+    .warning-box-text {
+      color: var(--color-gray-300);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    
+    /* ==========================================
+       RESPONSIVE
+       ========================================== */
+    @media (max-width: 768px) {
+      .section { padding: 40px 20px; }
+      .hero-stats { gap: 32px; }
+      .hero-stat-value { font-size: 2.5rem; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .slide-nav { display: none; }
+      .block-indicator { display: none; }
+      .news-grid { grid-template-columns: 1fr; }
+      .spectrum-segment { font-size: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-logo">CO<span>BRAIN</span></div>
+    <div class="preloader-bar">
+      <div class="preloader-progress"></div>
+    </div>
+  </div>
+
+  <!-- Slide Navigation Dots -->
+  <nav class="slide-nav" id="slideNav"></nav>
+  
+  <!-- Block Indicator -->
+  <div class="block-indicator" id="blockIndicator">Block 1: Foundation</div>
+  
+  <!-- Slide Counter -->
+  <div class="slide-counter">
+    <span class="current" id="currentSlide">1</span> / <span id="totalSlides">35</span>
+  </div>
+  
+  <!-- Navigation Hint -->
+  <div class="nav-hint">
+    <kbd>↑</kbd><kbd>↓</kbd> Navigate
+  </div>
+
+  <!-- ============================================
+       BLOCK 1: FOUNDATION & MINDSET (45 min)
+       ============================================ -->
+
+  <!-- GLOBAL MESH - Always visible, follows mouse -->
+  <canvas class="global-mesh interactive" id="globalMesh"></canvas>
+
+  <!-- SLIDE 1: Hero -->
+  <section class="section section-dark hero" data-section="1" data-block="Block 1: Foundation">
+    <div class="hero-video">
+      <video autoplay muted loop playsinline>
+        <source src="https://res.cloudinary.com/startplatz/video/upload/v1767670067/ai-hub/website/Animate_1080p_202601060420.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <i class="ph-fill ph-brain"></i>
+        <span>Sales & Business Development Team</span>
+      </div>
+      <h1 class="hero-title">
+        <span class="white">COBRAIN</span><br>
+        <span class="purple">AI WORKSHOP</span>
+      </h1>
+      <p class="hero-subtitle">Empowering your team to work smarter with AI</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-value" data-target="4">0</div>
+          <div class="hero-stat-label">Hours</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value" data-target="6">0</div>
+          <div class="hero-stat-label">Blocks</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value" data-target="5">0</div>
+          <div class="hero-stat-label">Exercises</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value" data-target="70" data-suffix="%">0</div>
+          <div class="hero-stat-label">Hands-on</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Presenter Info - Bold Glossy Card -->
+    <div class="hero-presenter" id="presenterCard">
+      <div class="presenter-card">
+        <div class="presenter-image-border"></div>
+        <div class="presenter-image">
+          <img src="https://res.cloudinary.com/startplatz/image/upload/v1767714994/ai-hub/website/website_stock_images/Jakow_website_portait.png" alt="Jakow Smirin" />
+          <div class="presenter-info">
+            <div class="presenter-label">Your Trainer</div>
+            <div class="presenter-name">Jakow Smirin</div>
+            <div class="presenter-role">Chief AI & Operations Officer</div>
+            <div class="presenter-company">STARTPLATZ AI Hub</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 2: CES 2026 Newsroom -->
+  <section class="section section-dark newsroom-section" data-section="2" data-block="Block 1: Foundation">
+    <div class="newsroom-container">
+      <!-- Left: Visual -->
+      <div class="newsroom-visual">
+        <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=800&fit=crop" alt="Robot AI" class="newsroom-hero-image" />
+        <div class="newsroom-visual-overlay"></div>
+        <div class="newsroom-visual-badge">
+          <span class="live-dot"></span>
+          CES 2026
+        </div>
+      </div>
+      
+      <!-- Right: Content -->
+      <div class="newsroom-content">
+        <div class="newsroom-header">
+          <h2 class="newsroom-title">THE FUTURE IS <span class="highlight">NOW</span></h2>
+          <p class="newsroom-subtitle">Technology is moving faster than ever</p>
+        </div>
+        
+        <div class="newsroom-highlights">
+          <div class="highlight-item">
+            <div class="highlight-icon">🤖</div>
+            <div class="highlight-text">
+              <strong>Humanoid Robots</strong>
+              <span>Mass production begins 2026</span>
+            </div>
+          </div>
+          <div class="highlight-item">
+            <div class="highlight-icon">🧠</div>
+            <div class="highlight-text">
+              <strong>AI Agents</strong>
+              <span>Autonomous multi-step workflows</span>
+            </div>
+          </div>
+          <div class="highlight-item">
+            <div class="highlight-icon">⚡</div>
+            <div class="highlight-text">
+              <strong>Cognitive Labor</strong>
+              <span>Knowledge work transformed</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="newsroom-message">
+          <div class="message-line">Physical robots: <span class="dim">2-3 years away</span></div>
+          <div class="message-line">AI assistants: <span class="highlight-text-inline">Available TODAY</span></div>
+        </div>
+        
+        <a href="https://drive.google.com/file/d/1LB6Eh-heXB1iA23DrLGa6VBfAq91rs1A/view?usp=sharing" target="_blank" class="download-btn">
+          <i class="ph-fill ph-presentation-chart"></i>
+          <span>Download Slides</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 3: The Headlines -->
+  <section class="section section-dark" data-section="3" data-block="Block 1: Foundation">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge"><i class="ph-fill ph-newspaper"></i> The Headlines</span>
+        <h2 class="section-title">AI IS <span class="highlight">EVERYWHERE</span></h2>
+        <p class="section-subtitle">What the data tells us about AI adoption in 2025</p>
+      </div>
+      
+      <div class="stats-grid">
+        <div class="headline-card">
+          <div class="headline-source">McKinsey 2024</div>
+          <div class="headline-stat">72%</div>
+          <div class="headline-text">of organizations now use AI in at least one business function</div>
+        </div>
+        <div class="headline-card">
+          <div class="headline-source">Microsoft Work Trend</div>
+          <div class="headline-stat">75%</div>
+          <div class="headline-text">of knowledge workers use AI at work — many without telling IT</div>
+        </div>
+        <div class="headline-card">
+          <div class="headline-source">GitHub Copilot Study</div>
+          <div class="headline-stat">55%</div>
+          <div class="headline-text">faster task completion with AI assistance</div>
+        </div>
+        <div class="headline-card">
+          <div class="headline-source">Salesforce Report</div>
+          <div class="headline-stat">4.5h</div>
+          <div class="headline-text">saved per week by sales reps using AI tools</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 3: The AI Divide -->
+  <section class="section section-dark" data-section="3" data-block="Block 1: Foundation">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge" style="background: var(--color-error);"><i class="ph-fill ph-warning"></i> Reality Check</span>
+        <h2 class="section-title">THE AI <span class="highlight">DIVIDE</span></h2>
+        <p class="section-subtitle">Society is splitting into four groups...</p>
+      </div>
+      
+      <div class="spectrum-container">
+        <div class="spectrum-bar">
+          <div class="spectrum-segment refuse">Refuse</div>
+          <div class="spectrum-segment misuse">Misuse</div>
+          <div class="spectrum-segment afraid">Afraid</div>
+          <div class="spectrum-segment power">Power Users</div>
+        </div>
+        <div class="spectrum-labels">
+          <span>"I won't use it on principle"</span>
+          <span>"I use it wrong"</span>
+          <span>"I'm scared to try"</span>
+          <span>"Can't live without"</span>
+        </div>
+      </div>
+      
+      <div class="fun-fact">
+        <div class="fun-fact-header"><i class="ph-fill ph-chart-bar"></i> Konrad-Adenauer-Stiftung 2024</div>
+        <div class="fun-fact-text">
+          30% now rate AI as "completely unacceptable" — up from 23% before ChatGPT. 
+          Older adults and those with less formal education are 3x more likely to refuse AI entirely.
+          <strong>Today's goal: Move everyone towards "Power User" safely.</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 4: AI Anxiety Headlines -->
+  <section class="section section-dark" data-section="4" data-block="Block 1: Foundation">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge" style="background: var(--color-warning);"><i class="ph-fill ph-newspaper-clipping"></i> Headlines</span>
+        <h2 class="section-title">THE <span class="highlight">FEAR</span> IS REAL</h2>
+        <p class="section-subtitle">Why some people are hesitant — and why we should listen</p>
+      </div>
+      
+      <div class="news-grid">
+        <div class="news-card">
+          <div class="news-source">Washington Post • 2024</div>
+          <div class="news-headline">"AI Psychosis: Psychiatrists report rise in patients losing touch with reality after chatbot use"</div>
+          <div class="news-excerpt">San Francisco doctors seeing cases where heavy AI users develop paranoid thoughts, believing the AI is sentient.</div>
+        </div>
+        <div class="news-card warning">
+          <div class="news-source">Adaptavist Study • 2024</div>
+          <div class="news-headline">"35% of Gen Z employees report stress and anxiety over AI replacing their jobs"</div>
+          <div class="news-excerpt">Workers are hiding skills and knowledge to protect their positions — creating toxic workplace dynamics.</div>
+        </div>
+        <div class="news-card info">
+          <div class="news-source">University of Leipzig</div>
+          <div class="news-headline">"Black Box AI: Fear of loss of control affects people across all age groups"</div>
+          <div class="news-excerpt">The feeling of "not understanding" what AI does creates anxiety, especially in high-stakes situations.</div>
+        </div>
+      </div>
+      
+      <div class="warning-box">
+        <div class="warning-box-header"><i class="ph-fill ph-warning-octagon"></i> The Real Risk</div>
+        <div class="warning-box-text">
+          Using AI <strong>without understanding</strong> can lead to problems: wrong information, embarrassing mistakes, or over-reliance.
+          Today we'll teach you to use AI <strong>responsibly and effectively</strong> — as a tool YOU control.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 5: Key Message 1 -->
+  <section class="section key-message" data-section="5" data-block="Block 1: Foundation">
+    <p class="key-message-text">
+      AI is not replacing you —<br>
+      but <span class="highlight">someone using AI might.</span>
+    </p>
+  </section>
+
+  <!-- SLIDE 6: Ice Breaker -->
+  <section class="section section-dark" data-section="6" data-block="Block 1: Foundation">
+    <div class="container-narrow">
+      <div class="section-header">
+        <span class="section-badge"><i class="ph-fill ph-hand-waving"></i> Ice Breaker</span>
+        <h2 class="section-title">WHERE ARE <span class="highlight">YOU?</span></h2>
+        <p class="section-subtitle">How would you describe your current AI usage?</p>
+      </div>
+      
+      <div class="poll-options">
+        <div class="poll-option" onclick="this.classList.toggle('selected')">
+          <div class="poll-emoji">😰</div>
+          <div class="poll-label">"What's a prompt?"</div>
+        </div>
+        <div class="poll-option" onclick="this.classList.toggle('selected')">
+          <div class="poll-emoji">🤔</div>
+          <div class="poll-label">"Tried it a few times"</div>
+        </div>
+        <div class="poll-option" onclick="this.classList.toggle('selected')">
+          <div class="poll-emoji">😊</div>
+          <div class="poll-label">"Use it weekly"</div>
+        </div>
+        <div class="poll-option" onclick="this.classList.toggle('selected')">
+          <div class="poll-emoji">🚀</div>
+          <div class="poll-label">"Can't live without it"</div>
+        </div>
+      </div>
+      
+      <div class="fun-fact">
+        <div class="fun-fact-header"><i class="ph-fill ph-lightbulb"></i> Fun Fact</div>
+        <div class="fun-fact-text">
+          A recent survey found that 78% of employees who use AI tools daily believe they're more productive — but only 31% feel confident they're using AI "the right way". Today we'll fix that!
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 7: Goals -->
+  <section class="section section-dark" data-section="7" data-block="Block 1: Foundation">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge"><i class="ph-fill ph-target"></i> Objectives</span>
+        <h2 class="section-title">TODAY'S <span class="highlight">GOALS</span></h2>
+        <p class="section-subtitle">By the end of this workshop, you will be able to...</p>
+      </div>
+      
+      <div class="card-grid">
+        <div class="card card-dark">
+          <div class="card-icon"><i class="ph-fill ph-shield-check"></i></div>
+          <h3 class="card-title">Overcome AI Anxiety</h3>
+          <p class="card-text">Build confidence with AI technology and understand it as a powerful tool, not a threat.</p>
+        </div>
+        <div class="card card-dark">
+          <div class="card-icon"><i class="ph-fill ph-lightbulb"></i></div>
+          <h3 class="card-title">Recognize Value</h3>
+          <p class="card-text">Identify concrete benefits and time-saving opportunities in YOUR daily work.</p>
+        </div>
+        <div class="card card-dark">
+          <div class="card-icon"><i class="ph-fill ph-hands-clapping"></i></div>
+          <h3 class="card-title">Apply Practically</h3>
+          <p class="card-text">Get hands-on experience with Cobrain through real exercises and templates.</p>
+        </div>
+        <div class="card card-dark">
+          <div class="card-icon"><i class="ph-fill ph-medal"></i></div>
+          <h3 class="card-title">Master Best Practices</h3>
+          <p class="card-text">Learn effective prompting techniques backed by research for consistent results.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 8: Meme Break - Real Giphy -->
+  <section class="section section-dark" data-section="8" data-block="Block 1: Foundation">
+    <div class="giphy-container">
+      <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcjFkdWd0a3hvbGNhMWc5Y2txMHg3NWl0MndxM2R4ejhnMnA5Y3l5MCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/JIX9t2j0ZTN9S/giphy.gif" alt="Cat typing on computer">
+      <div class="giphy-caption">When the boss asks if AI wrote this presentation</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 9: Meet Cobrain -->
+  <section class="section section-dark" data-section="9" data-block="Block 1: Foundation">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge"><i class="ph-fill ph-desktop"></i> Platform</span>
+        <h2 class="section-title">MEET <span class="highlight">COBRAIN</span></h2>
+        <p class="section-subtitle">Your AI Hub for Business — secure, compliant, powerful</p>
+      </div>
+      <div class="image-showcase">
+        <img src="images/cobrain-main-interface.png" alt="Cobrain AI-Assistant Interface">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       BLOCK 2: PROMPTING FUNDAMENTALS (60 min)
+       ============================================ -->
+
+  <!-- SLIDE 10: Block 2 Intro -->
+  <section class="section section-gradient" data-section="10" data-block="Block 2: Prompting">
+    <div class="section-header">
+      <span class="section-badge" style="background: var(--color-gold); color: var(--color-black);">
+        <i class="ph-fill ph-chat-teardrop-text"></i> Block 2
+      </span>
+      <h2 class="section-title" style="font-size: clamp(2.5rem, 6vw, 5rem);">THE ART OF<br><span class="highlight">PROMPTING</span></h2>
+      <p class="section-subtitle">60 minutes • Theory + Hands-on Exercise</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 11: Garbage In Garbage Out -->
+  <section class="section key-message" data-section="11" data-block="Block 2: Prompting">
+    <p class="key-message-text">
+      <span class="highlight">GARBAGE IN,</span><br>
+      GARBAGE OUT.
+    </p>
+  </section>
+
+  <!-- SLIDE 12: 4 Pillars -->
+  <section class="section section-dark" data-section="12" data-block="Block 2: Prompting">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge"><i class="ph-fill ph-columns"></i> Framework</span>
+        <h2 class="section-title">THE 4 <span class="highlight">PILLARS</span></h2>
+        <p class="section-subtitle">The foundation of every effective AI prompt</p>
+      </div>
+      
+      <div class="pillars-grid">
+        <div class="pillar">
+          <div class="pillar-icon"><i class="ph-fill ph-user-circle"></i></div>
+          <h3 class="pillar-title">Role</h3>
+          <p class="pillar-desc">Who should the AI be?<br><em>"Act as a senior sales consultant..."</em></p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon"><i class="ph-fill ph-info"></i></div>
+          <h3 class="pillar-title">Context</h3>
+          <p class="pillar-desc">Background information<br><em>"The client is in automotive..."</em></p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon"><i class="ph-fill ph-clipboard-text"></i></div>
+          <h3 class="pillar-title">Task</h3>
+          <p class="pillar-desc">What exactly to do?<br><em>"Write a follow-up email..."</em></p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon"><i class="ph-fill ph-layout"></i></div>
+          <h3 class="pillar-title">Format</h3>
+          <p class="pillar-desc">How should output look?<br><em>"Keep it under 200 words..."</em></p>
+        </div>
+      </div>
+      
+      <div class="fun-fact">
+        <div class="fun-fact-header"><i class="ph-fill ph-star"></i> For the Pros</div>
+        <div class="fun-fact-text">
+          This framework is based on the KLAR/CRISPE model used in professional prompt engineering. Google's Whitepaper on Prompt Engineering (2024) confirms that role-based prompting improves output quality by up to 40%.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 13: Bad vs Good Prompt -->
+  <section class="section section-dark" data-section="13" data-block="Block 2: Prompting">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge"><i class="ph-fill ph-scales"></i> Comparison</span>
+        <h2 class="section-title">SPOT THE <span class="highlight">DIFFERENCE</span></h2>
+      </div>
+      
+      <div class="prompt-comparison">
+        <div class="prompt-box">
+          <div class="prompt-box-header bad">
+            <i class="ph-fill ph-x-circle"></i> Bad Prompt
+          </div>
+          <div class="prompt-box-content">Write an email to a customer.</div>
+        </div>
+        
+        <div class="prompt-box">
+          <div class="prompt-box-header good">
+            <i class="ph-fill ph-check-circle"></i> Good Prompt
+          </div>
+          <div class="prompt-box-content"><span class="role">[ROLE] You are a professional sales 
+representative at an automotive 
+supply company.</span>
+
+<span class="context">[CONTEXT] Customer ABC Motors in 
+Munich requested a follow-up after 
+our brake system meeting yesterday.</span>
+
+<span class="task">[TASK] Write a follow-up email that 
+thanks them, summarizes 3 key 
+discussion points, and proposes 
+a demo next week.</span>
+
+<span class="format">[FORMAT] Keep under 200 words, 
+professional but warm tone, 
+include clear call-to-action.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 14: Advanced Techniques -->
+  <section class="section section-dark" data-section="14" data-block="Block 2: Prompting">
+    <div class="container-narrow">
+      <div class="section-header">
+        <span class="section-badge" style="background: var(--color-gold); color: var(--color-black);">
+          <i class="ph-fill ph-trophy"></i> Advanced
+        </span>
+        <h2 class="section-title">LEVEL UP YOUR <span class="highlight">PROMPTS</span></h2>
+      </div>
+      
+      <div class="technique-card">
+        <div class="technique-header">
+          <div class="technique-title">🔗 Chain-of-Thought Prompting</div>
+          <span class="technique-badge advanced">Research-Backed</span>
+        </div>
+        <div class="technique-desc">Make the AI "think step by step" for complex reasoning tasks.</div>
+        <div class="technique-example">"Let's approach this step by step:<br>1. First, analyze the customer's needs<br>2. Then, identify our best solutions<br>3. Finally, recommend the top 3 options"</div>
+        <div class="technique-source">📄 Wei et al. (2022): "Chain-of-Thought Prompting" — Google Research</div>
+      </div>
+      
+      <div class="technique-card">
+        <div class="technique-header">
+          <div class="technique-title">📚 Few-Shot Learning</div>
+          <span class="technique-badge">Practical</span>
+        </div>
+        <div class="technique-desc">Give 2-3 examples of what you want — AI learns the pattern.</div>
+        <div class="technique-example">"Here are examples of good visit reports:<br>[Example 1]...<br>[Example 2]...<br>Now write one for my recent visit to ABC Corp."</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 15: Exercise - Prompt Battle -->
+  <section class="section section-dark" data-section="15" data-block="Block 2: Prompting">
+    <div class="exercise-card">
+      <div class="exercise-header">
+        <span class="exercise-badge"><i class="ph-fill ph-trophy"></i> TEAM CHALLENGE</span>
+        <div class="exercise-timer">
+          <i class="ph-fill ph-timer"></i>
+          <span id="exerciseTimer1">40:00</span>
+        </div>
+      </div>
+      <h3 class="exercise-title">Prompt Battle</h3>
+      <p class="exercise-description">Teams compete to create the best prompt for preparing a customer meeting.</p>
+      
+      <ul class="exercise-steps">
+        <li class="exercise-step">
+          <span class="exercise-step-number">1</span>
+          <div class="exercise-step-content">
+            <h4>Form Teams (2 min)</h4>
+            <p>Split into 3-4 groups of 4-5 people</p>
+          </div>
+        </li>
+        <li class="exercise-step">
+          <span class="exercise-step-number">2</span>
+          <div class="exercise-step-content">
+            <h4>Create Prompt (15 min)</h4>
+            <p>Using the 4 pillars, craft your best prompt for: "Prepare me for a meeting with a potential client in automotive"</p>
+          </div>
+        </li>
+        <li class="exercise-step">
+          <span class="exercise-step-number">3</span>
+          <div class="exercise-step-content">
+            <h4>Test in Cobrain (10 min)</h4>
+            <p>Run your prompts and compare results</p>
+          </div>
+        </li>
+        <li class="exercise-step">
+          <span class="exercise-step-number">4</span>
+          <div class="exercise-step-content">
+            <h4>Present & Judge (13 min)</h4>
+            <p>Each team presents. We vote for the winner! 🏆</p>
+          </div>
+        </li>
+      </ul>
+      
+      <button class="btn btn-white" onclick="startExerciseTimer(40, 'exerciseTimer1')" style="margin-top: 24px;">
+        <i class="ph-fill ph-play"></i> Start Timer
+      </button>
+    </div>
+  </section>
+
+  <!-- ============================================
+       COFFEE BREAK
+       ============================================ -->
+
+  <!-- SLIDE 16: Coffee Break -->
+  <section class="section section-primary" data-section="16" data-block="☕ Break">
+    <div class="section-header">
+      <h2 class="section-title" style="font-size: 5rem; color: var(--color-white);">☕</h2>
+      <h2 class="section-title" style="color: var(--color-white);">COFFEE BREAK</h2>
+      <p class="section-subtitle" style="color: rgba(255,255,255,0.8);">15 minutes • Stretch, grab a drink, check your messages</p>
+    </div>
+  </section>
+
+  <!-- ============================================
+       BLOCK 3: TEMPLATES & SYSTEM PROMPTS (60 min)
+       ============================================ -->
+
+  <!-- SLIDE 17: Block 3 Intro -->
+  <section class="section section-gradient" data-section="17" data-block="Block 3: Templates">
+    <div class="section-header">
+      <span class="section-badge" style="background: var(--color-gold); color: var(--color-black);">
+        <i class="ph-fill ph-rocket"></i> Block 3
+      </span>
+      <h2 class="section-title" style="font-size: clamp(2.5rem, 6vw, 5rem);">TEMPLATES &<br><span class="highlight">SYSTEM PROMPTS</span></h2>
+      <p class="section-subtitle">60 minutes • Build Your Superpower</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 18: Template Key Message -->
+  <section class="section key-message" data-section="18" data-block="Block 3: Templates">
+    <p class="key-message-text">
+      <span class="highlight">Templates</span> are your superpower.<br>
+      Build once, use forever.
+    </p>
+  </section>
+
+  <!-- SLIDE 19: Why Templates -->
+  <section class="section section-dark" data-section="19" data-block="Block 3: Templates">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge"><i class="ph-fill ph-question"></i> The Why</span>
+        <h2 class="section-title">WHY <span class="highlight">TEMPLATES?</span></h2>
+      </div>
+      
+      <div class="card-grid">
+        <div class="card card-dark">
+          <div class="card-icon" style="background: var(--color-success);"><i class="ph-fill ph-check-circle"></i></div>
+          <h3 class="card-title">Consistency</h3>
+          <p class="card-text">Same high quality every time. No more "good days" and "bad days" with AI output.</p>
+        </div>
+        <div class="card card-dark">
+          <div class="card-icon" style="background: var(--color-warning);"><i class="ph-fill ph-clock"></i></div>
+          <h3 class="card-title">Time Savings</h3>
+          <p class="card-text">Stop re-writing the same context. One click, perfect prompt — every time.</p>
+        </div>
+        <div class="card card-dark">
+          <div class="card-icon" style="background: var(--color-info);"><i class="ph-fill ph-users"></i></div>
+          <h3 class="card-title">Team Scaling</h3>
+          <p class="card-text">Share best practices across the team. Your secret sauce becomes everyone's.</p>
+        </div>
+      </div>
+      
+      <div class="fun-fact">
+        <div class="fun-fact-header"><i class="ph-fill ph-chart-line-up"></i> Real Impact</div>
+        <div class="fun-fact-text">
+          Teams that implement shared AI templates report 3x faster onboarding of new members and 60% reduction in "prompt debugging" time. Your perfect prompt shouldn't live only in your head!
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 20: Cobrain Templates -->
+  <section class="section section-dark" data-section="20" data-block="Block 3: Templates">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge"><i class="ph-fill ph-rocket"></i> In Cobrain</span>
+        <h2 class="section-title">TEMPLATE <span class="highlight">LIBRARY</span></h2>
+        <p class="section-subtitle">Pre-built templates + Create your own</p>
+      </div>
+      <div class="image-showcase">
+        <img src="images/cobrain-templates.png" alt="Cobrain Templates Library">
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 21: Template Builder -->
+  <section class="section section-dark" data-section="21" data-block="Block 3: Templates">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge"><i class="ph-fill ph-wrench"></i> Builder</span>
+        <h2 class="section-title">BUILD <span class="highlight">YOUR OWN</span></h2>
+        <p class="section-subtitle">Visual builder with variables & placeholders</p>
+      </div>
+      <div class="image-showcase">
+        <img src="images/cobrain-template-builder.png" alt="Cobrain Template Builder">
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 22: Exercise - Build Template -->
+  <section class="section section-dark" data-section="22" data-block="Block 3: Templates">
+    <div class="exercise-card">
+      <div class="exercise-header">
+        <span class="exercise-badge"><i class="ph-fill ph-hammer"></i> HANDS-ON</span>
+        <div class="exercise-timer">
+          <i class="ph-fill ph-timer"></i>
+          <span id="exerciseTimer2">40:00</span>
+        </div>
+      </div>
+      <h3 class="exercise-title">Build Your Template</h3>
+      <p class="exercise-description">Create a template you'll actually use tomorrow!</p>
+      
+      <ul class="exercise-steps">
+        <li class="exercise-step">
+          <span class="exercise-step-number">1</span>
+          <div class="exercise-step-content">
+            <h4>Choose Your Scenario</h4>
+            <p>A) Travel Preparation • B) Visit Report • C) Your own idea!</p>
+          </div>
+        </li>
+        <li class="exercise-step">
+          <span class="exercise-step-number">2</span>
+          <div class="exercise-step-content">
+            <h4>Build in Cobrain (20 min)</h4>
+            <p>Use the 4 pillars. Add variables like {CUSTOMER_NAME}, {INDUSTRY}</p>
+          </div>
+        </li>
+        <li class="exercise-step">
+          <span class="exercise-step-number">3</span>
+          <div class="exercise-step-content">
+            <h4>Test & Iterate (10 min)</h4>
+            <p>Try your template with real data. Refine the output.</p>
+          </div>
+        </li>
+        <li class="exercise-step">
+          <span class="exercise-step-number">4</span>
+          <div class="exercise-step-content">
+            <h4>Share Best Examples (10 min)</h4>
+            <p>2-3 volunteers show their templates</p>
+          </div>
+        </li>
+      </ul>
+      
+      <button class="btn btn-white" onclick="startExerciseTimer(40, 'exerciseTimer2')" style="margin-top: 24px;">
+        <i class="ph-fill ph-play"></i> Start Timer
+      </button>
+    </div>
+  </section>
+
+  <!-- ============================================
+       BLOCK 4: VOICE TO REPORT (45 min)
+       ============================================ -->
+
+  <!-- SLIDE 23: Block 4 Intro -->
+  <section class="section section-gradient" data-section="23" data-block="Block 4: Voice to Report">
+    <div class="section-header">
+      <span class="section-badge" style="background: var(--color-gold); color: var(--color-black);">
+        <i class="ph-fill ph-microphone"></i> Block 4
+      </span>
+      <h2 class="section-title" style="font-size: clamp(2.5rem, 6vw, 5rem);">VOICE TO<br><span class="highlight">REPORT</span></h2>
+      <p class="section-subtitle">45 minutes • The Visit Report Challenge</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 24: The Problem - Real Giphy -->
+  <section class="section section-dark" data-section="24" data-block="Block 4: Voice to Report">
+    <div class="giphy-container" style="max-width: 500px;">
+      <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGE3aDg2ZWpjdWQ1eXJjZzM5cW1uY3dxaDI2Mnp1bDh4M3Q5eWlhMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l1J9EdzfOSgfyueLm/giphy.gif" alt="Stressed office worker">
+      <div class="giphy-caption">POV: Friday 6pm, 5 visit reports due</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 25: The Workflow -->
+  <section class="section section-dark" data-section="25" data-block="Block 4: Voice to Report">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge"><i class="ph-fill ph-magic-wand"></i> The Solution</span>
+        <h2 class="section-title">VOICE TO <span class="highlight">CRM</span></h2>
+        <p class="section-subtitle">From messy notes to structured report in minutes</p>
+      </div>
+      
+      <div class="workflow-steps">
+        <div class="workflow-step">
+          <div class="workflow-step-icon"><i class="ph-fill ph-microphone"></i></div>
+          <div class="workflow-step-title">Voice Recording</div>
+        </div>
+        <div class="workflow-arrow">→</div>
+        <div class="workflow-step">
+          <div class="workflow-step-icon"><i class="ph-fill ph-text-aa"></i></div>
+          <div class="workflow-step-title">Transcription</div>
+        </div>
+        <div class="workflow-arrow">→</div>
+        <div class="workflow-step">
+          <div class="workflow-step-icon"><i class="ph-fill ph-brain"></i></div>
+          <div class="workflow-step-title">AI Structuring</div>
+        </div>
+        <div class="workflow-arrow">→</div>
+        <div class="workflow-step">
+          <div class="workflow-step-icon"><i class="ph-fill ph-database"></i></div>
+          <div class="workflow-step-title">CRM Ready</div>
+        </div>
+      </div>
+      
+      <div class="fun-fact">
+        <div class="fun-fact-header"><i class="ph-fill ph-clock"></i> Time Saved</div>
+        <div class="fun-fact-text">
+          Average visit report: 25-40 minutes manually → 5-8 minutes with AI workflow.
+          That's up to <strong>4 hours saved per week</strong> for a typical sales rep!
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 26: Exercise - Voice Report -->
+  <section class="section section-dark" data-section="26" data-block="Block 4: Voice to Report">
+    <div class="exercise-card">
+      <div class="exercise-header">
+        <span class="exercise-badge"><i class="ph-fill ph-microphone"></i> GROUP EXERCISE</span>
+        <div class="exercise-timer">
+          <i class="ph-fill ph-timer"></i>
+          <span id="exerciseTimer3">30:00</span>
+        </div>
+      </div>
+      <h3 class="exercise-title">Report Generation</h3>
+      <p class="exercise-description">Transform voice notes into a CRM-ready report</p>
+      
+      <ul class="exercise-steps">
+        <li class="exercise-step">
+          <span class="exercise-step-number">1</span>
+          <div class="exercise-step-content">
+            <h4>Simulate Meeting Notes (5 min)</h4>
+            <p>One person dictates a fictional customer meeting summary</p>
+          </div>
+        </li>
+        <li class="exercise-step">
+          <span class="exercise-step-number">2</span>
+          <div class="exercise-step-content">
+            <h4>Process in Cobrain (10 min)</h4>
+            <p>Use your template to transform notes into structured report</p>
+          </div>
+        </li>
+        <li class="exercise-step">
+          <span class="exercise-step-number">3</span>
+          <div class="exercise-step-content">
+            <h4>Compare & Optimize (15 min)</h4>
+            <p>Which format works best for CRM? What's missing?</p>
+          </div>
+        </li>
+      </ul>
+      
+      <button class="btn btn-white" onclick="startExerciseTimer(30, 'exerciseTimer3')" style="margin-top: 24px;">
+        <i class="ph-fill ph-play"></i> Start Timer
+      </button>
+    </div>
+  </section>
+
+  <!-- ============================================
+       BLOCK 5: SMART WORKFLOWS (30 min)
+       ============================================ -->
+
+  <!-- SLIDE 27: Block 5 Intro -->
+  <section class="section section-gradient" data-section="27" data-block="Block 5: Workflows">
+    <div class="section-header">
+      <span class="section-badge" style="background: var(--color-gold); color: var(--color-black);">
+        <i class="ph-fill ph-gear-six"></i> Block 5
+      </span>
+      <h2 class="section-title" style="font-size: clamp(2.5rem, 6vw, 5rem);">SMART<br><span class="highlight">WORKFLOWS</span></h2>
+      <p class="section-subtitle">30 minutes • Best Practices & Real Examples</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 28: Use Cases -->
+  <section class="section section-dark" data-section="28" data-block="Block 5: Workflows">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge"><i class="ph-fill ph-briefcase"></i> Real World</span>
+        <h2 class="section-title">YOUR <span class="highlight">USE CASES</span></h2>
+      </div>
+      
+      <div class="card-grid">
+        <div class="card card-dark">
+          <div class="card-icon" style="background: var(--color-info);"><i class="ph-fill ph-airplane-takeoff"></i></div>
+          <h3 class="card-title">Travel Preparation</h3>
+          <p class="card-text">Research customers before visits, prepare meeting agendas, plan efficient multi-stop routes.</p>
+        </div>
+        <div class="card card-dark">
+          <div class="card-icon" style="background: var(--color-success);"><i class="ph-fill ph-file-text"></i></div>
+          <h3 class="card-title">Visit Reports</h3>
+          <p class="card-text">Transform voice notes into structured CRM-ready reports. No more dreading Friday reports!</p>
+        </div>
+        <div class="card card-dark">
+          <div class="card-icon" style="background: var(--color-warning);"><i class="ph-fill ph-envelope"></i></div>
+          <h3 class="card-title">Email Sequences</h3>
+          <p class="card-text">Lead nurturing, follow-ups, proposal cover letters — with consistent quality.</p>
+        </div>
+        <div class="card card-dark">
+          <div class="card-icon" style="background: var(--color-primary);"><i class="ph-fill ph-magnifying-glass"></i></div>
+          <h3 class="card-title">Competitive Intel</h3>
+          <p class="card-text">Quickly analyze competitors, summarize market news, prep for tough questions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 29: Best Practices -->
+  <section class="section section-dark" data-section="29" data-block="Block 5: Workflows">
+    <div class="container-narrow">
+      <div class="section-header">
+        <span class="section-badge"><i class="ph-fill ph-check-square"></i> Best Practices</span>
+        <h2 class="section-title">THE <span class="highlight">DO'S & DON'TS</span></h2>
+      </div>
+      
+      <div class="technique-card" style="border-color: var(--color-success);">
+        <div class="technique-header">
+          <div class="technique-title">✅ DO: Iterate, Don't Restart</div>
+        </div>
+        <div class="technique-desc">If the first output isn't perfect, refine your prompt. Add more context, ask for changes. Don't delete and start over!</div>
+        <div class="technique-example">"This is good, but make it more concise and add bullet points for the action items"</div>
+      </div>
+      
+      <div class="technique-card" style="border-color: var(--color-error);">
+        <div class="technique-header">
+          <div class="technique-title">❌ DON'T: Trust Blindly</div>
+        </div>
+        <div class="technique-desc">AI can hallucinate facts, especially numbers and dates. Always verify critical information before sending!</div>
+      </div>
+      
+      <div class="technique-card" style="border-color: var(--color-warning);">
+        <div class="technique-header">
+          <div class="technique-title">⚠️ REMEMBER: Data Privacy</div>
+        </div>
+        <div class="technique-desc">Cobrain is enterprise-secure, but always be mindful. No passwords, no personal employee data, no confidential client financials.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       BLOCK 6: WRAP-UP (25 min)
+       ============================================ -->
+
+  <!-- SLIDE 30: Key Message Final -->
+  <section class="section key-message" data-section="30" data-block="Block 6: Wrap-Up">
+    <p class="key-message-text">
+      AI saves time, but<br>
+      <span class="highlight">needs your expertise.</span><br>
+      You're the pilot.
+    </p>
+  </section>
+
+  <!-- SLIDE 31: Key Takeaways -->
+  <section class="section section-dark" data-section="31" data-block="Block 6: Wrap-Up">
+    <div class="container-narrow">
+      <div class="section-header">
+        <span class="section-badge"><i class="ph-fill ph-key"></i> Key Takeaways</span>
+        <h2 class="section-title">REMEMBER <span class="highlight">THIS</span></h2>
+      </div>
+      
+      <div class="technique-card" style="background: linear-gradient(135deg, #1a1a2e, var(--color-gray-900));">
+        <div class="technique-title" style="font-size: 1.5rem; margin-bottom: 24px;">The 5 Core Messages</div>
+        <ol style="color: var(--color-gray-300); line-height: 2.5; font-size: 1.1rem; padding-left: 24px;">
+          <li><strong style="color: var(--color-primary);">AI won't replace you</strong> — but someone using AI might</li>
+          <li><strong style="color: var(--color-primary);">Garbage in, garbage out</strong> — quality prompts = quality results</li>
+          <li><strong style="color: var(--color-primary);">Templates are your superpower</strong> — build once, use forever</li>
+          <li><strong style="color: var(--color-primary);">AI saves time</strong> — but needs your expertise to shine</li>
+          <li><strong style="color: var(--color-primary);">Start small, think big</strong> — one template this week!</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 32: Action Plan -->
+  <section class="section section-primary" data-section="32" data-block="Block 6: Wrap-Up">
+    <div class="container" style="text-align: center;">
+      <span class="section-badge" style="background: var(--color-black);"><i class="ph-fill ph-rocket-launch"></i> Your Mission</span>
+      <h2 class="section-title" style="color: var(--color-white);">ACTION PLAN</h2>
+      <p class="section-subtitle" style="color: rgba(255,255,255,0.8); margin-bottom: 48px;">
+        Commit to one thing for each timeframe
+      </p>
+      
+      <div class="card-grid" style="max-width: 900px; margin: 0 auto;">
+        <div class="card" style="background: rgba(255,255,255,0.95);">
+          <div class="card-icon" style="background: var(--color-success);"><i class="ph-fill ph-calendar-check"></i></div>
+          <h3 class="card-title" style="color: var(--color-primary);">This Week</h3>
+          <p class="card-text">Create 1 template you'll use immediately. Start with something simple!</p>
+        </div>
+        <div class="card" style="background: rgba(255,255,255,0.95);">
+          <div class="card-icon" style="background: var(--color-warning);"><i class="ph-fill ph-trend-up"></i></div>
+          <h3 class="card-title" style="color: var(--color-primary);">This Month</h3>
+          <p class="card-text">Optimize 1 workflow with AI assistance. Visit reports are a great start!</p>
+        </div>
+        <div class="card" style="background: rgba(255,255,255,0.95);">
+          <div class="card-icon" style="background: var(--color-info);"><i class="ph-fill ph-share-network"></i></div>
+          <h3 class="card-title" style="color: var(--color-primary);">This Quarter</h3>
+          <p class="card-text">Share your learnings with a colleague. Teaching is the best way to learn!</p>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- SLIDE 33: Resources & Handouts -->
+  <section class="section section-dark" data-section="33" data-block="Block 6: Wrap-Up">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge"><i class="ph-fill ph-download-simple"></i> Resources</span>
+        <h2 class="section-title">YOUR <span class="highlight">TOOLKIT</span></h2>
+        <p class="section-subtitle">Everything you need to continue your AI journey</p>
+      </div>
+      
+      <div class="card-grid" style="max-width: 1100px; margin: 0 auto;">
+        <a href="handouts/prompt-cheat-sheet.html" target="_blank" class="resource-card">
+          <div class="resource-icon">📋</div>
+          <h3 class="resource-title">Prompt Cheat Sheet</h3>
+          <p class="resource-desc">The 4 Pillars, advanced techniques, and quick tips for sales</p>
+          <span class="resource-link">Download PDF <i class="ph ph-arrow-right"></i></span>
+        </a>
+        <a href="handouts/action-plan-worksheet.html" target="_blank" class="resource-card">
+          <div class="resource-icon">🎯</div>
+          <h3 class="resource-title">Action Plan Worksheet</h3>
+          <p class="resource-desc">Personal planning template: This Week, This Month, This Quarter</p>
+          <span class="resource-link">Download PDF <i class="ph ph-arrow-right"></i></span>
+        </a>
+        <a href="https://intern.app-co-brain.com/" target="_blank" class="resource-card">
+          <div class="resource-icon">🧠</div>
+          <h3 class="resource-title">Cobrain Platform</h3>
+          <p class="resource-desc">Access the AI assistant and start building your templates</p>
+          <span class="resource-link">Open Cobrain <i class="ph ph-arrow-up-right"></i></span>
+        </a>
+      </div>
+      
+      <div class="fun-fact" style="margin-top: 48px;">
+        <div class="fun-fact-header">
+          <i class="ph-fill ph-graduation-cap"></i> Continue Learning
+        </div>
+        <div class="fun-fact-text">
+          <strong>For Advanced Users:</strong> Check out the research behind effective prompting:<br>
+          • <a href="https://arxiv.org/abs/2201.11903" target="_blank" style="color: var(--color-primary);">Chain-of-Thought Prompting (Google, 2022)</a> - Why "think step by step" works<br>
+          • <a href="https://arxiv.org/abs/2005.14165" target="_blank" style="color: var(--color-primary);">Few-Shot Learning (OpenAI GPT-3 Paper)</a> - The science of giving examples
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 34: Start Small Think Big -->
+  <section class="section key-message" data-section="34" data-block="Block 6: Wrap-Up">
+    <p class="key-message-text">
+      Start <span class="highlight">small</span>, think <span class="highlight">big</span>.<br>
+      <span style="font-size: 0.6em; opacity: 0.7;">One template. One workflow. One conversation at a time.</span>
+    </p>
+  </section>
+
+  <!-- SLIDE 35: Thank You & Q&A -->
+  <section class="section section-gradient" data-section="35" data-block="Block 6: Wrap-Up">
+    <div class="container" style="text-align: center;">
+      <div class="hero-title" style="font-size: clamp(3rem, 8vw, 6rem); margin-bottom: 32px;">
+        <span class="white">THANK</span> <span class="purple">YOU!</span>
+      </div>
+      <p class="hero-subtitle" style="margin-bottom: 48px;">
+        "The goal is not to teach AI — the goal is to empower <strong>you</strong> to work smarter with AI."
+      </p>
+      
+      <div class="giphy-container" style="margin: 0 auto 48px;">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGRtNnZnNDQyYWM5M2l3ZnA2N2I2MXFhNjcwNzE1ZHV5YTYzb3k3eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oEjI5VtIhHvK37WYo/giphy.gif" alt="Applause">
+        <div class="giphy-caption">Questions? Let's discuss!</div>
+      </div>
+      
+      <div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; position: relative; z-index: 100;">
+        <a href="https://drive.google.com/file/d/1DRo1qAKwF6t2xr4wAe3PP2UfP9QIGKfc/view?usp=drive_link" target="_blank" class="btn btn-white">
+          <i class="ph-fill ph-download-simple"></i> Download Presentation
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // ========================================
+    // BLOCK NAMES
+    // ========================================
+    const blockNames = {
+      1: "Block 1: Foundation",
+      2: "Block 1: Foundation",
+      3: "Block 1: Foundation",
+      4: "Block 1: Foundation",
+      5: "Block 1: Foundation",
+      6: "Block 1: Foundation",
+      7: "Block 1: Foundation",
+      8: "Block 1: Foundation",
+      9: "Block 1: Foundation",
+      10: "Block 1: Foundation",
+      11: "Block 2: Prompting",
+      12: "Block 2: Prompting",
+      13: "Block 2: Prompting",
+      14: "Block 2: Prompting",
+      15: "Block 2: Prompting",
+      16: "Block 2: Prompting",
+      17: "☕ Break",
+      18: "Block 3: Templates",
+      19: "Block 3: Templates",
+      20: "Block 3: Templates",
+      21: "Block 3: Templates",
+      22: "Block 3: Templates",
+      23: "Block 3: Templates",
+      24: "Block 4: Voice to Report",
+      25: "Block 4: Voice to Report",
+      26: "Block 4: Voice to Report",
+      27: "Block 4: Voice to Report",
+      28: "Block 5: Workflows",
+      29: "Block 5: Workflows",
+      30: "Block 5: Workflows",
+      31: "Block 6: Wrap-Up",
+      32: "Block 6: Wrap-Up",
+      33: "Block 6: Wrap-Up",
+      34: "Block 6: Wrap-Up",
+      35: "Block 6: Wrap-Up",
+      36: "Block 6: Wrap-Up"
+    };
+    
+    // ========================================
+    // PRELOADER
+    // ========================================
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('preloader').classList.add('hidden');
+        initCountUp();
+      }, 1000);
+    });
+    
+    // ========================================
+    // SECTION NAVIGATION
+    // ========================================
+    const sections = document.querySelectorAll('.section');
+    const totalSections = sections.length;
+    let currentSection = 0;
+    let isScrolling = false;
+    
+    document.getElementById('totalSlides').textContent = totalSections;
+    
+    function generateNavDots() {
+      const nav = document.getElementById('slideNav');
+      nav.innerHTML = '';
+      sections.forEach((_, i) => {
+        const dot = document.createElement('div');
+        dot.className = 'slide-dot' + (i === 0 ? ' active' : '');
+        dot.onclick = () => goToSection(i);
+        nav.appendChild(dot);
+      });
+    }
+    
+    function goToSection(index) {
+      if (index < 0 || index >= totalSections || isScrolling) return;
+      
+      isScrolling = true;
+      currentSection = index;
+      
+      sections[index].scrollIntoView({ behavior: 'smooth' });
+      updateUI();
+      
+      setTimeout(() => { isScrolling = false; }, 800);
+    }
+    
+    function updateUI() {
+      document.getElementById('currentSlide').textContent = currentSection + 1;
+      document.getElementById('blockIndicator').textContent = blockNames[currentSection + 1] || "Workshop";
+      
+      document.querySelectorAll('.slide-dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentSection);
+      });
+    }
+    
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
+        e.preventDefault();
+        goToSection(currentSection + 1);
+      } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+        e.preventDefault();
+        goToSection(currentSection - 1);
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        goToSection(0);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        goToSection(totalSections - 1);
+      }
+    });
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !isScrolling) {
+          const index = Array.from(sections).indexOf(entry.target);
+          if (index !== -1) {
+            currentSection = index;
+            updateUI();
+          }
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    sections.forEach(section => observer.observe(section));
+    
+    generateNavDots();
+    
+    // ========================================
+    // COUNT UP ANIMATION
+    // ========================================
+    function initCountUp() {
+      document.querySelectorAll('[data-target]').forEach(el => {
+        const target = parseInt(el.dataset.target);
+        const suffix = el.dataset.suffix || '';
+        const duration = 2000;
+        const step = target / (duration / 16);
+        let current = 0;
+        
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+          el.textContent = Math.floor(current) + suffix;
+        }, 16);
+      });
+    }
+    
+    // ========================================
+    // EXERCISE TIMERS
+    // ========================================
+    const exerciseIntervals = {};
+    
+    function startExerciseTimer(minutes, elementId) {
+      let seconds = minutes * 60;
+      const timerEl = document.getElementById(elementId);
+      
+      if (exerciseIntervals[elementId]) {
+        clearInterval(exerciseIntervals[elementId]);
+      }
+      
+      exerciseIntervals[elementId] = setInterval(() => {
+        const mins = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        timerEl.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+        
+        if (seconds <= 60) {
+          timerEl.style.color = '#EF4444';
+        }
+        
+        if (seconds === 0) {
+          clearInterval(exerciseIntervals[elementId]);
+          timerEl.textContent = "TIME'S UP!";
+        } else {
+          seconds--;
+        }
+      }, 1000);
+    }
+    
+    // ========================================
+    // GLOBAL MESH - Flowing Breeze Effect
+    // ========================================
+    class GlobalMesh {
+      constructor(canvasId) {
+        this.canvas = document.getElementById(canvasId);
+        if (!this.canvas) return;
+        
+        this.ctx = this.canvas.getContext('2d');
+        this.points = [];
+        this.mouseX = -1000;
+        this.mouseY = -1000;
+        this.time = 0;
+        
+        this.init();
+      }
+      
+      init() {
+        this.resize();
+        this.createPoints();
+        this.bindEvents();
+        this.animate();
+      }
+      
+      resize() {
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+        this.createPoints();
+      }
+      
+      createPoints() {
+        this.points = [];
+        const spacing = 80; // Normal grid spacing
+        const cols = Math.ceil(this.canvas.width / spacing) + 1;
+        const rows = Math.ceil(this.canvas.height / spacing) + 1;
+        
+        for (let i = 0; i < rows; i++) {
+          for (let j = 0; j < cols; j++) {
+            this.points.push({
+              x: j * spacing,
+              y: i * spacing,
+              baseX: j * spacing,
+              baseY: i * spacing,
+              vx: Math.random() * 0.05 - 0.025,
+              vy: Math.random() * 0.05 - 0.025,
+              phase: Math.random() * Math.PI * 2
+            });
+          }
+        }
+        this.cols = cols;
+        this.rows = rows;
+      }
+      
+      bindEvents() {
+        document.addEventListener('mousemove', (e) => {
+          this.mouseX = e.clientX;
+          this.mouseY = e.clientY;
+        });
+        
+        document.addEventListener('mouseleave', () => {
+          this.mouseX = -1000;
+          this.mouseY = -1000;
+        });
+        
+        window.addEventListener('resize', () => this.resize());
+      }
+      
+      // Flowing breeze wave - moves left to right
+      breezeWave(x, y, time) {
+        // Main breeze flow from left to right - SLOWER
+        const breezeSpeed = 0.25;
+        
+        // Create thin bands of light using sharper wave functions
+        const wave1 = Math.sin((x * 0.004) - (time * breezeSpeed));
+        const wave2 = Math.sin((x * 0.003) - (time * breezeSpeed * 0.5) + y * 0.001);
+        
+        // Vertical variation - subtle
+        const verticalRipple = Math.sin(y * 0.005 + time * 0.08) * 0.15;
+        
+        // Combine waves
+        const combined = (wave1 * 0.6 + wave2 * 0.4) + verticalRipple;
+        
+        // Sharp falloff - only glow when wave is at peak (narrow band)
+        // This creates thin lines of light instead of wide glowing areas
+        const sharpened = Math.pow(Math.max(0, combined), 4); // Higher power = narrower glow
+        
+        return sharpened * 0.8;
+      }
+      
+      animate() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.time += 0.012; // Slower animation speed
+        
+        // Update points with gentle drift - slower
+        this.points.forEach(p => {
+          p.x += p.vx * 0.5;
+          p.y += p.vy * 0.5;
+          
+          // Add breeze-like horizontal drift - slower
+          const breezePush = Math.sin(this.time * 0.2 + p.phase) * 0.2;
+          p.x += breezePush * 0.05;
+          
+          const dx = p.x - p.baseX;
+          const dy = p.y - p.baseY;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          
+          if (dist > 12) {
+            p.vx *= -0.85;
+            p.vy *= -0.85;
+          }
+        });
+        
+        // Draw grid lines
+        for (let i = 0; i < this.cols - 1; i++) {
+          for (let j = 0; j < this.rows - 1; j++) {
+            const idx = j * this.cols + i;
+            const p1 = this.points[idx];
+            const p2 = this.points[idx + 1];
+            const p3 = this.points[idx + this.cols];
+            
+            if (p1 && p2) {
+              const midX = (p1.x + p2.x) / 2;
+              const midY = (p1.y + p2.y) / 2;
+              
+              // Breeze glow - narrow bands
+              let glow = this.breezeWave(midX, midY, this.time);
+              
+              // Mouse glow (additive)
+              const mouseDist = Math.hypot(midX - this.mouseX, midY - this.mouseY);
+              const mouseGlow = Math.max(0, 1 - mouseDist / 120);
+              glow = Math.max(glow, mouseGlow);
+              
+              this.ctx.beginPath();
+              this.ctx.moveTo(p1.x, p1.y);
+              this.ctx.lineTo(p2.x, p2.y);
+              
+              // Higher threshold = more dark areas
+              if (glow > 0.25) {
+                this.ctx.strokeStyle = `rgba(108, 92, 231, ${0.3 + glow * 0.5})`;
+                this.ctx.lineWidth = 1 + glow * 1.5;
+              } else {
+                this.ctx.strokeStyle = 'rgba(60, 60, 80, 0.08)';
+                this.ctx.lineWidth = 1;
+              }
+              this.ctx.stroke();
+            }
+            
+            if (p1 && p3) {
+              const midX = (p1.x + p3.x) / 2;
+              const midY = (p1.y + p3.y) / 2;
+              
+              let glow = this.breezeWave(midX, midY, this.time);
+              
+              const mouseDist = Math.hypot(midX - this.mouseX, midY - this.mouseY);
+              const mouseGlow = Math.max(0, 1 - mouseDist / 120);
+              glow = Math.max(glow, mouseGlow);
+              
+              this.ctx.beginPath();
+              this.ctx.moveTo(p1.x, p1.y);
+              this.ctx.lineTo(p3.x, p3.y);
+              
+              if (glow > 0.25) {
+                this.ctx.strokeStyle = `rgba(108, 92, 231, ${0.3 + glow * 0.5})`;
+                this.ctx.lineWidth = 1 + glow * 1.5;
+              } else {
+                this.ctx.strokeStyle = 'rgba(60, 60, 80, 0.08)';
+                this.ctx.lineWidth = 1;
+              }
+              this.ctx.stroke();
+            }
+          }
+        }
+        
+        // Draw points with narrow breeze glow
+        this.points.forEach(p => {
+          let glow = this.breezeWave(p.x, p.y, this.time);
+          
+          const mouseDist = Math.hypot(p.x - this.mouseX, p.y - this.mouseY);
+          const mouseGlow = Math.max(0, 1 - mouseDist / 120);
+          glow = Math.max(glow, mouseGlow);
+          
+          const baseSize = 1.5;
+          
+          this.ctx.beginPath();
+          this.ctx.arc(p.x, p.y, glow > 0.25 ? baseSize + glow * 3 : baseSize, 0, Math.PI * 2);
+          
+          if (glow > 0.25) {
+            this.ctx.fillStyle = `rgba(108, 92, 231, ${0.5 + glow * 0.4})`;
+          } else {
+            this.ctx.fillStyle = 'rgba(60, 60, 80, 0.12)';
+          }
+          this.ctx.fill();
+        });
+        
+        requestAnimationFrame(() => this.animate());
+      }
+    }
+    
+    new GlobalMesh('globalMesh');
+    
+    // ========================================
+    // PRESENTER CARD PARALLAX EFFECT
+    // ========================================
+    const presenterCard = document.getElementById('presenterCard');
+    if (presenterCard) {
+      const card = presenterCard.querySelector('.presenter-card');
+      
+      document.addEventListener('mousemove', (e) => {
+        const rect = presenterCard.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
+        
+        // Calculate distance from center of card
+        const deltaX = (mouseX - centerX) / 40;
+        const deltaY = (mouseY - centerY) / 40;
+        
+        // Limit rotation
+        const rotateY = Math.max(-15, Math.min(15, deltaX));
+        const rotateX = Math.max(-15, Math.min(15, -deltaY));
+        
+        // Apply transform
+        card.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
+      });
+      
+      // Reset on mouse leave
+      document.addEventListener('mouseleave', () => {
+        card.style.transform = 'rotateY(0deg) rotateX(0deg)';
+      });
+    }
+  </script>
+
+</body>
+</html>
