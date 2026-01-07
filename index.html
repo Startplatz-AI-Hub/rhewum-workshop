@@ -645,7 +645,7 @@
     .newsroom-visual-badge {
       position: absolute;
       top: 40px;
-      left: 40px;
+      right: 40px;
       display: flex;
       align-items: center;
       gap: 10px;
@@ -1558,9 +1558,10 @@
        ========================================== */
     .news-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      max-width: 1000px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1100px;
+      align-items: stretch;
     }
     
     .news-card {
@@ -1568,10 +1569,16 @@
       border-left: 4px solid var(--color-error);
       padding: 24px;
       text-align: left;
+      display: flex;
+      flex-direction: column;
     }
     
     .news-card.warning { border-color: var(--color-warning); }
     .news-card.info { border-color: var(--color-info); }
+    
+    .news-excerpt {
+      margin-top: auto;
+    }
     
     .news-source {
       font-size: 12px;
@@ -1602,6 +1609,7 @@
     .spectrum-container {
       max-width: 800px;
       width: 100%;
+      margin: 0 auto;
     }
     
     .spectrum-bar {
@@ -1621,16 +1629,20 @@
       text-transform: uppercase;
     }
     
-    .spectrum-segment.refuse { background: var(--color-error); flex: 25; }
-    .spectrum-segment.misuse { background: var(--color-warning); flex: 35; }
-    .spectrum-segment.afraid { background: var(--color-info); flex: 25; }
-    .spectrum-segment.power { background: var(--color-success); flex: 15; }
+    .spectrum-segment.refuse { background: var(--color-error); flex: 1; }
+    .spectrum-segment.misuse { background: var(--color-warning); flex: 1; }
+    .spectrum-segment.afraid { background: var(--color-info); flex: 1; }
+    .spectrum-segment.power { background: var(--color-success); flex: 1; }
     
     .spectrum-labels {
       display: flex;
-      justify-content: space-between;
       font-size: 11px;
       color: var(--color-gray-500);
+    }
+    
+    .spectrum-labels span {
+      flex: 1;
+      text-align: center;
     }
     
     /* ==========================================
@@ -2100,6 +2112,9 @@
         <div class="fun-fact-text">
           This framework is based on the KLAR/CRISPE model used in professional prompt engineering. Google's Whitepaper on Prompt Engineering (2024) confirms that role-based prompting improves output quality by up to 40%.
         </div>
+        <a href="https://drive.google.com/file/d/1AbaBYbEa_EbPelsT40-vj64L-2IwUJHy/view" target="_blank" class="download-btn" style="margin-top: 16px; display: inline-flex;">
+          <i class="ph-fill ph-file-pdf"></i> Google Prompting Whitepaper
+        </a>
       </div>
     </div>
   </section>
@@ -2183,7 +2198,7 @@ include clear call-to-action.</span></div>
         <span class="exercise-badge"><i class="ph-fill ph-trophy"></i> TEAM CHALLENGE</span>
         <div class="exercise-timer">
           <i class="ph-fill ph-timer"></i>
-          <span id="exerciseTimer1">40:00</span>
+          <span id="exerciseTimer1">20:00</span>
         </div>
       </div>
       <h3 class="exercise-title">Prompt Battle</h3>
@@ -2220,7 +2235,7 @@ include clear call-to-action.</span></div>
         </li>
       </ul>
       
-      <button class="btn btn-white" onclick="startExerciseTimer(40, 'exerciseTimer1')" style="margin-top: 24px;">
+      <button class="btn btn-white" onclick="startExerciseTimer(20, 'exerciseTimer1')" style="margin-top: 24px;">
         <i class="ph-fill ph-play"></i> Start Timer
       </button>
     </div>
@@ -2332,7 +2347,7 @@ include clear call-to-action.</span></div>
         <span class="exercise-badge"><i class="ph-fill ph-hammer"></i> HANDS-ON</span>
         <div class="exercise-timer">
           <i class="ph-fill ph-timer"></i>
-          <span id="exerciseTimer2">40:00</span>
+          <span id="exerciseTimer2">20:00</span>
         </div>
       </div>
       <h3 class="exercise-title">Build Your Template</h3>
@@ -2369,7 +2384,7 @@ include clear call-to-action.</span></div>
         </li>
       </ul>
       
-      <button class="btn btn-white" onclick="startExerciseTimer(40, 'exerciseTimer2')" style="margin-top: 24px;">
+      <button class="btn btn-white" onclick="startExerciseTimer(20, 'exerciseTimer2')" style="margin-top: 24px;">
         <i class="ph-fill ph-play"></i> Start Timer
       </button>
     </div>
@@ -2439,14 +2454,72 @@ include clear call-to-action.</span></div>
     </div>
   </section>
 
-  <!-- SLIDE 26: Exercise - Voice Report -->
-  <section class="section section-dark" data-section="26" data-block="Block 4: Voice to Report">
+  <!-- SLIDE 26: Scenario Setup -->
+  <section class="section section-dark" data-section="26" data-block="Block 4: Voice to Report" style="padding: 0;">
+    <div style="display: flex; width: 100%; height: 100vh; position: relative; z-index: 10;">
+      <!-- Left: Client Image -->
+      <div style="flex: 0 0 45%; position: relative; overflow: hidden;">
+        <img src="https://res.cloudinary.com/startplatz/image/upload/v1767662297/ai-hub/website/website_stock_images/STORY-01.png" alt="Thomas Müller - Client" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(30%);">
+        <div style="position: absolute; inset: 0; background: linear-gradient(to right, transparent 60%, var(--color-black) 100%);"></div>
+        <div style="position: absolute; bottom: 60px; left: 40px; right: 40px;">
+          <div style="font-family: var(--font-display); font-size: 2rem; font-weight: 800; color: var(--color-white); text-transform: uppercase; letter-spacing: 0.05em;">Thomas Müller</div>
+          <div style="font-size: 1.1rem; color: var(--color-primary); margin-top: 4px;">Einkaufsleiter • ABC Motors GmbH</div>
+        </div>
+        <div style="position: absolute; top: 40px; right: 40px;">
+          <span style="background: var(--color-gold); color: var(--color-black); padding: 8px 16px; font-family: var(--font-display); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">
+            <i class="ph-fill ph-user-focus"></i> Kundenbesuch
+          </span>
+        </div>
+      </div>
+      
+      <!-- Right: Content -->
+      <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 60px; background: var(--color-black);">
+        <div style="max-width: 550px;">
+          <div style="font-family: var(--font-display); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-gray-500); margin-bottom: 16px;">
+            <i class="ph-fill ph-quotes"></i> Was der Kunde sagte
+          </div>
+          
+          <div style="background: var(--color-gray-900); border-left: 4px solid var(--color-primary); padding: 28px; margin-bottom: 32px;">
+            <p style="font-size: 1.25rem; color: var(--color-gray-200); line-height: 1.8; font-style: italic;">
+              „Wir sind sehr interessiert an eurem neuen Bremssystem. Der Preis liegt etwas über unserem Budget, aber die Qualität überzeugt. Können wir über Staffelpreise bei größeren Bestellmengen sprechen? Außerdem wäre ein Probelauf in unserer Werkstatt ideal."
+            </p>
+          </div>
+          
+          <div style="font-family: var(--font-display); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-gray-500); margin-bottom: 16px;">
+            <i class="ph-fill ph-microphone"></i> Deine Voice-Notiz
+          </div>
+          
+          <div style="background: linear-gradient(135deg, var(--color-gray-900), #1a1a2e); border: 1px solid var(--color-gray-700); padding: 20px; position: relative; z-index: 100;">
+            <div style="background: var(--color-black); border-radius: 8px; padding: 16px; display: flex; align-items: center; gap: 16px;">
+              <button onclick="this.querySelector('i').classList.toggle('ph-play'); this.querySelector('i').classList.toggle('ph-pause');" style="width: 56px; height: 56px; border-radius: 50%; background: var(--color-primary); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 100; position: relative;">
+                <i class="ph-fill ph-play" style="font-size: 24px; color: white;"></i>
+              </button>
+              <div style="flex: 1; height: 48px; background: var(--color-gray-800); border-radius: 4px; position: relative; overflow: hidden;">
+                <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 35%; background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));"></div>
+                <div style="position: absolute; left: 35%; top: 50%; transform: translate(-50%, -50%); width: 16px; height: 16px; background: white; border-radius: 50%; box-shadow: 0 2px 8px rgba(0,0,0,0.3);"></div>
+              </div>
+              <span style="color: var(--color-gray-400); font-family: var(--font-mono); font-size: 1rem; min-width: 50px;">1:24</span>
+            </div>
+          </div>
+          
+          <div style="margin-top: 32px; padding: 16px; background: rgba(108, 92, 231, 0.1); border: 1px solid rgba(108, 92, 231, 0.3);">
+            <div style="font-size: 0.95rem; color: var(--color-gray-300);">
+              <strong style="color: var(--color-primary);">Deine Aufgabe:</strong> Erstelle aus dieser Voice-Notiz einen strukturierten Besuchsbericht für das CRM.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 27: Exercise - Voice Report -->
+  <section class="section section-dark" data-section="27" data-block="Block 4: Voice to Report">
     <div class="exercise-card">
       <div class="exercise-header">
         <span class="exercise-badge"><i class="ph-fill ph-microphone"></i> GROUP EXERCISE</span>
         <div class="exercise-timer">
           <i class="ph-fill ph-timer"></i>
-          <span id="exerciseTimer3">30:00</span>
+          <span id="exerciseTimer3">10:00</span>
         </div>
       </div>
       <h3 class="exercise-title">Report Generation</h3>
@@ -2476,7 +2549,7 @@ include clear call-to-action.</span></div>
         </li>
       </ul>
       
-      <button class="btn btn-white" onclick="startExerciseTimer(30, 'exerciseTimer3')" style="margin-top: 24px;">
+      <button class="btn btn-white" onclick="startExerciseTimer(10, 'exerciseTimer3')" style="margin-top: 24px;">
         <i class="ph-fill ph-play"></i> Start Timer
       </button>
     </div>
@@ -2487,7 +2560,7 @@ include clear call-to-action.</span></div>
        ============================================ -->
 
   <!-- SLIDE 27: Block 5 Intro -->
-  <section class="section section-gradient" data-section="27" data-block="Block 5: Workflows">
+  <section class="section section-gradient" data-section="28" data-block="Block 5: Workflows">
     <div class="section-header">
       <span class="section-badge" style="background: var(--color-gold); color: var(--color-black);">
         <i class="ph-fill ph-gear-six"></i> Block 5
@@ -2498,7 +2571,7 @@ include clear call-to-action.</span></div>
   </section>
 
   <!-- SLIDE 28: Use Cases -->
-  <section class="section section-dark" data-section="28" data-block="Block 5: Workflows">
+  <section class="section section-dark" data-section="29" data-block="Block 5: Workflows">
     <div class="container">
       <div class="section-header">
         <span class="section-badge"><i class="ph-fill ph-briefcase"></i> Real World</span>
@@ -2530,8 +2603,8 @@ include clear call-to-action.</span></div>
     </div>
   </section>
 
-  <!-- SLIDE 29: Best Practices -->
-  <section class="section section-dark" data-section="29" data-block="Block 5: Workflows">
+  <!-- SLIDE 30: Best Practices -->
+  <section class="section section-dark" data-section="30" data-block="Block 5: Workflows">
     <div class="container-narrow">
       <div class="section-header">
         <span class="section-badge"><i class="ph-fill ph-check-square"></i> Best Practices</span>
@@ -2567,7 +2640,7 @@ include clear call-to-action.</span></div>
        ============================================ -->
 
   <!-- SLIDE 30: Key Message Final -->
-  <section class="section key-message" data-section="30" data-block="Block 6: Wrap-Up">
+  <section class="section key-message" data-section="31" data-block="Block 6: Wrap-Up">
     <p class="key-message-text">
       AI saves time, but<br>
       <span class="highlight">needs your expertise.</span><br>
@@ -2576,7 +2649,7 @@ include clear call-to-action.</span></div>
   </section>
 
   <!-- SLIDE 31: Key Takeaways -->
-  <section class="section section-dark" data-section="31" data-block="Block 6: Wrap-Up">
+  <section class="section section-dark" data-section="32" data-block="Block 6: Wrap-Up">
     <div class="container-narrow">
       <div class="section-header">
         <span class="section-badge"><i class="ph-fill ph-key"></i> Key Takeaways</span>
@@ -2597,7 +2670,7 @@ include clear call-to-action.</span></div>
   </section>
 
   <!-- SLIDE 32: Action Plan -->
-  <section class="section section-primary" data-section="32" data-block="Block 6: Wrap-Up">
+  <section class="section section-primary" data-section="33" data-block="Block 6: Wrap-Up">
     <div class="container" style="text-align: center;">
       <span class="section-badge" style="background: var(--color-black);"><i class="ph-fill ph-rocket-launch"></i> Your Mission</span>
       <h2 class="section-title" style="color: var(--color-white);">ACTION PLAN</h2>
@@ -2627,7 +2700,7 @@ include clear call-to-action.</span></div>
   </section>
 
   <!-- SLIDE 33: Resources & Handouts -->
-  <section class="section section-dark" data-section="33" data-block="Block 6: Wrap-Up">
+  <section class="section section-dark" data-section="34" data-block="Block 6: Wrap-Up">
     <div class="container">
       <div class="section-header">
         <span class="section-badge"><i class="ph-fill ph-download-simple"></i> Resources</span>
@@ -2664,7 +2737,7 @@ include clear call-to-action.</span></div>
   </section>
 
   <!-- SLIDE 34: Start Small Think Big -->
-  <section class="section key-message" data-section="34" data-block="Block 6: Wrap-Up">
+  <section class="section key-message" data-section="35" data-block="Block 6: Wrap-Up">
     <p class="key-message-text">
       Start <span class="highlight">small</span>, think <span class="highlight">big</span>.<br>
       <span style="font-size: 0.6em; opacity: 0.7;">One template. One workflow. One conversation at a time.</span>
@@ -2672,7 +2745,7 @@ include clear call-to-action.</span></div>
   </section>
 
   <!-- SLIDE 35: Thank You & Q&A -->
-  <section class="section section-gradient" data-section="35" data-block="Block 6: Wrap-Up">
+  <section class="section section-gradient" data-section="36" data-block="Block 6: Wrap-Up">
     <div class="container" style="text-align: center;">
       <div class="hero-title" style="font-size: clamp(3rem, 8vw, 6rem); margin-bottom: 32px;">
         <span class="white">THANK</span> <span class="purple">YOU!</span>
@@ -2767,6 +2840,7 @@ include clear call-to-action.</span></div>
       33: "Block 6: Wrap-Up",
       34: "Block 6: Wrap-Up",
       35: "Block 6: Wrap-Up",
+      36: "Block 6: Wrap-Up",
       36: "Block 6: Wrap-Up"
     };
     
