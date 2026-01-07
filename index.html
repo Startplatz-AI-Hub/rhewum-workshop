@@ -16,6 +16,110 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%236C5CE7' width='100' height='100' rx='0'/%3E%3Ctext x='50' y='70' font-size='50' text-anchor='middle' fill='white' font-family='system-ui'%3ECB%3C/text%3E%3C/svg%3E">
   
   <style>
+    /* Password Overlay Styles */
+    .password-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+    
+    .password-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .password-box {
+      text-align: center;
+      padding: 48px;
+      background: linear-gradient(135deg, #171717, #262626);
+      border: 1px solid #404040;
+      max-width: 400px;
+      width: 90%;
+    }
+    
+    .password-logo {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #6C5CE7;
+      margin-bottom: 8px;
+      letter-spacing: 0.05em;
+    }
+    
+    .password-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #FFFFFF;
+      margin-bottom: 24px;
+    }
+    
+    .password-input {
+      width: 100%;
+      padding: 16px 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.25rem;
+      text-align: center;
+      background: #000000;
+      border: 2px solid #404040;
+      color: #FFFFFF;
+      letter-spacing: 0.3em;
+      margin-bottom: 16px;
+      transition: border-color 0.3s ease;
+    }
+    
+    .password-input:focus {
+      outline: none;
+      border-color: #6C5CE7;
+    }
+    
+    .password-input.error {
+      border-color: #EF4444;
+      animation: shake 0.5s ease;
+    }
+    
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-10px); }
+      40%, 80% { transform: translateX(10px); }
+    }
+    
+    .password-btn {
+      width: 100%;
+      padding: 16px 24px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      background: #6C5CE7;
+      border: none;
+      color: #FFFFFF;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .password-btn:hover {
+      background: #5B4BD4;
+      transform: translateY(-2px);
+    }
+    
+    .password-hint {
+      margin-top: 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      color: #737373;
+    }
+
     :root {
       --color-primary: #6C5CE7;
       --color-primary-hover: #5B4BD4;
@@ -52,7 +156,7 @@
     
     body {
       font-family: var(--font-body);
-      font-size: 16px;
+      font-size: 18px;
       line-height: 1.6;
       color: var(--color-black);
       background: var(--color-black);
@@ -202,7 +306,7 @@
     .section-dark .section-title .highlight { color: var(--color-primary-light); }
     
     .section-subtitle {
-      font-size: 1.25rem;
+      font-size: 1.4rem;
       color: var(--color-gray-600);
       max-width: 700px;
       margin: 0 auto;
@@ -633,13 +737,13 @@
     
     .highlight-text strong {
       font-family: var(--font-display);
-      font-size: 1rem;
+      font-size: 1.2rem;
       font-weight: 700;
       color: var(--color-white);
     }
     
     .highlight-text span {
-      font-size: 13px;
+      font-size: 1rem;
       color: var(--color-gray-400);
     }
     
@@ -767,11 +871,11 @@
     }
     
     .headline-source {
-      font-size: 11px;
+      font-size: 13px;
       color: var(--color-primary);
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
     
     .headline-stat {
@@ -783,7 +887,7 @@
     }
     
     .headline-text {
-      font-size: 1rem;
+      font-size: 1.15rem;
       color: var(--color-gray-400);
     }
     
@@ -832,20 +936,20 @@
       margin-bottom: 20px;
     }
     
-    .card-icon i { font-size: 28px; color: var(--color-white); }
+    .card-icon i { font-size: 32px; color: var(--color-white); }
     
     .card-title {
       font-family: var(--font-display);
-      font-size: 1.125rem;
+      font-size: 1.35rem;
       font-weight: 700;
       text-transform: uppercase;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
     
     .card-text {
-      font-size: 14px;
+      font-size: 1.05rem;
       color: var(--color-gray-600);
-      line-height: 1.6;
+      line-height: 1.7;
     }
     
     .card-dark .card-text { color: var(--color-gray-400); }
@@ -922,15 +1026,15 @@
     
     .pillar-title {
       font-family: var(--font-display);
-      font-size: 1.25rem;
+      font-size: 1.5rem;
       font-weight: 700;
       text-transform: uppercase;
       color: var(--color-white);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
     
     .pillar-desc {
-      font-size: 14px;
+      font-size: 1.1rem;
       color: var(--color-gray-400);
     }
     
@@ -1134,15 +1238,15 @@
     
     .exercise-step-content h4 {
       font-family: var(--font-display);
-      font-size: 14px;
+      font-size: 1.1rem;
       font-weight: 700;
       text-transform: uppercase;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
     
     .exercise-step-content p {
-      font-size: 13px;
-      opacity: 0.8;
+      font-size: 1rem;
+      opacity: 0.85;
     }
     
     .btn {
@@ -1276,15 +1380,15 @@
       margin-bottom: 12px;
       color: var(--color-gold);
       font-family: var(--font-display);
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 700;
       text-transform: uppercase;
     }
     
     .fun-fact-text {
       color: var(--color-gray-300);
-      font-size: 14px;
-      line-height: 1.6;
+      font-size: 1.1rem;
+      line-height: 1.7;
     }
     
     /* ==========================================
@@ -1407,6 +1511,9 @@
       text-decoration: none;
       transition: all 0.3s ease;
       text-align: center;
+      position: relative;
+      z-index: 100;
+      cursor: pointer;
     }
     
     .resource-card:hover {
@@ -1422,17 +1529,17 @@
     
     .resource-title {
       font-family: var(--font-display);
-      font-size: 1.25rem;
+      font-size: 1.5rem;
       font-weight: 700;
       color: var(--color-white);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
     
     .resource-desc {
-      font-size: 14px;
+      font-size: 1.1rem;
       color: var(--color-gray-400);
-      margin-bottom: 16px;
-      line-height: 1.5;
+      margin-bottom: 18px;
+      line-height: 1.6;
     }
     
     .resource-link {
@@ -1467,26 +1574,26 @@
     .news-card.info { border-color: var(--color-info); }
     
     .news-source {
-      font-size: 10px;
+      font-size: 12px;
       color: var(--color-gray-500);
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
     
     .news-headline {
       font-family: var(--font-display);
-      font-size: 1rem;
+      font-size: 1.25rem;
       font-weight: 700;
       color: var(--color-white);
-      line-height: 1.3;
+      line-height: 1.35;
       margin-bottom: 8px;
     }
     
     .news-excerpt {
-      font-size: 13px;
+      font-size: 1rem;
       color: var(--color-gray-400);
-      line-height: 1.5;
+      line-height: 1.6;
     }
     
     /* ==========================================
@@ -1572,6 +1679,17 @@
   </style>
 </head>
 <body>
+
+  <!-- Password Protection -->
+  <div class="password-overlay" id="passwordOverlay">
+    <div class="password-box">
+      <div class="password-logo">COBRAIN</div>
+      <div class="password-title">Workshop Access</div>
+      <input type="password" class="password-input" id="passwordInput" placeholder="• • •" maxlength="10" autofocus>
+      <button class="password-btn" id="passwordBtn">Enter</button>
+      <div class="password-hint">Bitte Passwort eingeben</div>
+    </div>
+  </div>
 
   <!-- Preloader -->
   <div class="preloader" id="preloader">
@@ -2275,8 +2393,8 @@ include clear call-to-action.</span></div>
   <!-- SLIDE 24: The Problem - Real Giphy -->
   <section class="section section-dark" data-section="24" data-block="Block 4: Voice to Report">
     <div class="giphy-container" style="max-width: 500px;">
-      <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGE3aDg2ZWpjdWQ1eXJjZzM5cW1uY3dxaDI2Mnp1bDh4M3Q5eWlhMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l1J9EdzfOSgfyueLm/giphy.gif" alt="Stressed office worker">
-      <div class="giphy-caption">POV: Friday 6pm, 5 visit reports due</div>
+      <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcjR0OXZ0ZXB0aHB4MzBtMjN3dnRvdHJrdm5iZmV5eGlkYnBnZnFyZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7btNa0RUYa5E7iiQ/giphy.gif" alt="Person talking while driving">
+      <div class="giphy-caption">Andere Fahrer: Warum redet der mit sich selbst?<br><span style="font-size: 0.85em; opacity: 0.8;">Ich: Hab gerade 3 Besuchsberichte diktiert 😎</span></div>
     </div>
   </section>
 
@@ -2518,23 +2636,17 @@ include clear call-to-action.</span></div>
       </div>
       
       <div class="card-grid" style="max-width: 1100px; margin: 0 auto;">
-        <a href="handouts/prompt-cheat-sheet.html" target="_blank" class="resource-card">
+        <a href="https://drive.google.com/file/d/1bs-g4C_fG1tjk2guvJuvietapfhBbLJY/view?usp=sharing" target="_blank" class="resource-card">
           <div class="resource-icon">📋</div>
           <h3 class="resource-title">Prompt Cheat Sheet</h3>
           <p class="resource-desc">The 4 Pillars, advanced techniques, and quick tips for sales</p>
           <span class="resource-link">Download PDF <i class="ph ph-arrow-right"></i></span>
         </a>
-        <a href="handouts/action-plan-worksheet.html" target="_blank" class="resource-card">
+        <a href="https://drive.google.com/file/d/1lYYm-_ZqngAdXyn4ifiCbZmMj8AVrdZb/view?usp=sharing" target="_blank" class="resource-card">
           <div class="resource-icon">🎯</div>
           <h3 class="resource-title">Action Plan Worksheet</h3>
           <p class="resource-desc">Personal planning template: This Week, This Month, This Quarter</p>
           <span class="resource-link">Download PDF <i class="ph ph-arrow-right"></i></span>
-        </a>
-        <a href="https://intern.app-co-brain.com/" target="_blank" class="resource-card">
-          <div class="resource-icon">🧠</div>
-          <h3 class="resource-title">Cobrain Platform</h3>
-          <p class="resource-desc">Access the AI assistant and start building your templates</p>
-          <span class="resource-link">Open Cobrain <i class="ph ph-arrow-up-right"></i></span>
         </a>
       </div>
       
@@ -2583,6 +2695,39 @@ include clear call-to-action.</span></div>
   </section>
 
   <script>
+    // ========================================
+    // PASSWORD PROTECTION
+    // ========================================
+    (function() {
+      const CORRECT_PASSWORD = '007';
+      const overlay = document.getElementById('passwordOverlay');
+      const input = document.getElementById('passwordInput');
+      const btn = document.getElementById('passwordBtn');
+      
+      // Check if already authenticated
+      if (sessionStorage.getItem('workshop_auth') === 'true') {
+        overlay.classList.add('hidden');
+        setTimeout(() => overlay.remove(), 500);
+      }
+      
+      function checkPassword() {
+        if (input.value === CORRECT_PASSWORD) {
+          sessionStorage.setItem('workshop_auth', 'true');
+          overlay.classList.add('hidden');
+          setTimeout(() => overlay.remove(), 500);
+        } else {
+          input.classList.add('error');
+          input.value = '';
+          setTimeout(() => input.classList.remove('error'), 500);
+        }
+      }
+      
+      btn.addEventListener('click', checkPassword);
+      input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') checkPassword();
+      });
+    })();
+
     // ========================================
     // BLOCK NAMES
     // ========================================
