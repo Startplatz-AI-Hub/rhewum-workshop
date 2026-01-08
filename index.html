@@ -1646,6 +1646,162 @@
     }
     
     /* ==========================================
+       VIDEO CAROUSEL
+       ========================================== */
+    .video-carousel-section {
+      padding: 40px 0;
+      position: relative;
+      z-index: 10;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+    
+    .video-carousel-container {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 60px;
+      position: relative;
+      z-index: 10;
+    }
+    
+    .video-carousel {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    
+    .video-carousel-track {
+      display: flex;
+      gap: 24px;
+      overflow: hidden;
+      flex: 1;
+    }
+    
+    .video-slide {
+      flex: 0 0 100%;
+      max-width: 100%;
+      transition: transform 0.5s ease;
+    }
+    
+    .video-slide.full-width {
+      flex: 0 0 100%;
+      max-width: 100%;
+      scroll-snap-align: center;
+    }
+    
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      background: var(--color-gray-900);
+      border: 2px solid var(--color-gray-600);
+      z-index: 10;
+      border-radius: 8px;
+    }
+    
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    
+    .video-wrapper-large {
+      position: relative;
+      width: 100%;
+      height: 70vh;
+      min-height: 500px;
+      max-height: 800px;
+      overflow: hidden;
+      background: var(--color-gray-900);
+      border: 2px solid var(--color-gray-600);
+      z-index: 10;
+      border-radius: 8px;
+    }
+    
+    .video-wrapper-large iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    
+    .carousel-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--color-gray-800);
+      border: 1px solid var(--color-gray-600);
+      color: var(--color-white);
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+      z-index: 10;
+    }
+    
+    .carousel-btn:hover {
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+    }
+    
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 24px;
+    }
+    
+    .carousel-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--color-gray-600);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .carousel-dot.active {
+      background: var(--color-primary);
+      transform: scale(1.2);
+    }
+    
+    .video-carousel-track {
+      scroll-snap-type: x mandatory;
+      overflow-x: hidden;
+    }
+    
+    .single-video-section {
+      padding: 40px 0;
+      position: relative;
+      z-index: 10;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+    
+    .single-video-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 60px;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* ==========================================
        WARNING BOX
        ========================================== */
     .warning-box {
@@ -1879,8 +2035,8 @@
     </div>
   </section>
 
-  <!-- SLIDE 3: The AI Divide -->
-  <section class="section section-dark" data-section="3" data-block="Block 1: Foundation">
+  <!-- SLIDE 4: The AI Divide -->
+  <section class="section section-dark" data-section="4" data-block="Block 1: Foundation">
     <div class="container">
       <div class="section-header">
         <span class="section-badge" style="background: var(--color-error);"><i class="ph-fill ph-warning"></i> Reality Check</span>
@@ -1914,8 +2070,68 @@
     </div>
   </section>
 
-  <!-- SLIDE 4: AI Anxiety Headlines -->
-  <section class="section section-dark" data-section="4" data-block="Block 1: Foundation">
+  <!-- SLIDE 5: Video Carousel - AI in the News -->
+  <section class="section section-dark video-carousel-section" data-section="5" data-block="Block 1: Foundation">
+    <div class="video-carousel-container">
+      <div class="section-header" style="margin-bottom: 40px;">
+        <span class="section-badge"><i class="ph-fill ph-video"></i> Trending Now</span>
+        <h2 class="section-title">AI IN THE <span class="highlight">NEWS</span></h2>
+        <p class="section-subtitle">What the world is talking about</p>
+      </div>
+      
+      <div class="video-carousel">
+        <button class="carousel-btn carousel-prev" onclick="prevVideo()">
+          <i class="ph-bold ph-caret-left"></i>
+        </button>
+        
+        <div class="video-carousel-track" id="videoCarouselTrack">
+          <div class="video-slide full-width">
+            <div class="video-wrapper-large">
+              <iframe 
+                src="https://www.youtube.com/embed/OmzzoJM5YQM" 
+                title="AI Video 1"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+              </iframe>
+            </div>
+          </div>
+          <div class="video-slide full-width">
+            <div class="video-wrapper-large">
+              <iframe 
+                src="https://www.youtube.com/embed/jBnJlwcnOBI" 
+                title="AI Video 2"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+              </iframe>
+            </div>
+          </div>
+          <div class="video-slide full-width">
+            <div class="video-wrapper-large">
+              <iframe 
+                src="https://www.youtube.com/embed/vR-OOhv7bdY" 
+                title="AI Video 3"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+              </iframe>
+            </div>
+          </div>
+        </div>
+        
+        <button class="carousel-btn carousel-next" onclick="nextVideo()">
+          <i class="ph-bold ph-caret-right"></i>
+        </button>
+      </div>
+      
+      <div class="carousel-dots">
+        <button class="carousel-dot active" onclick="goToVideo(0)"></button>
+        <button class="carousel-dot" onclick="goToVideo(1)"></button>
+        <button class="carousel-dot" onclick="goToVideo(2)"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 6: AI Anxiety Headlines -->
+  <section class="section section-dark" data-section="6" data-block="Block 1: Foundation">
     <div class="container">
       <div class="section-header">
         <span class="section-badge" style="background: var(--color-warning);"><i class="ph-fill ph-newspaper-clipping"></i> Headlines</span>
@@ -1951,16 +2167,16 @@
     </div>
   </section>
 
-  <!-- SLIDE 5: Key Message 1 -->
-  <section class="section key-message" data-section="5" data-block="Block 1: Foundation">
+  <!-- SLIDE 7: Key Message 1 -->
+  <section class="section key-message" data-section="7" data-block="Block 1: Foundation">
     <p class="key-message-text">
       AI is not replacing you —<br>
       but <span class="highlight">someone using AI might.</span>
     </p>
   </section>
 
-  <!-- SLIDE 6: Ice Breaker -->
-  <section class="section section-dark" data-section="6" data-block="Block 1: Foundation">
+  <!-- SLIDE 8: Ice Breaker -->
+  <section class="section section-dark" data-section="8" data-block="Block 1: Foundation">
     <div class="container-narrow">
       <div class="section-header">
         <span class="section-badge"><i class="ph-fill ph-hand-waving"></i> Ice Breaker</span>
@@ -1996,8 +2212,8 @@
     </div>
   </section>
 
-  <!-- SLIDE 7: Goals -->
-  <section class="section section-dark" data-section="7" data-block="Block 1: Foundation">
+  <!-- SLIDE 9: Goals -->
+  <section class="section section-dark" data-section="9" data-block="Block 1: Foundation">
     <div class="container">
       <div class="section-header">
         <span class="section-badge"><i class="ph-fill ph-target"></i> Objectives</span>
@@ -2030,16 +2246,16 @@
     </div>
   </section>
 
-  <!-- SLIDE 8: Meme Break - Real Giphy -->
-  <section class="section section-dark" data-section="8" data-block="Block 1: Foundation">
+  <!-- SLIDE 10: Meme Break - Real Giphy -->
+  <section class="section section-dark" data-section="10" data-block="Block 1: Foundation">
     <div class="giphy-container">
       <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcjFkdWd0a3hvbGNhMWc5Y2txMHg3NWl0MndxM2R4ejhnMnA5Y3l5MCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/JIX9t2j0ZTN9S/giphy.gif" alt="Cat typing on computer">
       <div class="giphy-caption">When the boss asks if AI wrote this presentation</div>
     </div>
   </section>
 
-  <!-- SLIDE 9: Meet Cobrain -->
-  <section class="section section-dark" data-section="9" data-block="Block 1: Foundation">
+  <!-- SLIDE 11: Meet Cobrain -->
+  <section class="section section-dark" data-section="11" data-block="Block 1: Foundation">
     <div class="container">
       <div class="section-header">
         <span class="section-badge"><i class="ph-fill ph-desktop"></i> Platform</span>
@@ -2056,8 +2272,8 @@
        BLOCK 2: PROMPTING FUNDAMENTALS (60 min)
        ============================================ -->
 
-  <!-- SLIDE 10: Block 2 Intro -->
-  <section class="section section-gradient" data-section="10" data-block="Block 2: Prompting">
+  <!-- SLIDE 12: Block 2 Intro -->
+  <section class="section section-gradient" data-section="12" data-block="Block 2: Prompting">
     <div class="section-header">
       <span class="section-badge" style="background: var(--color-gold); color: var(--color-black);">
         <i class="ph-fill ph-chat-teardrop-text"></i> Block 2
@@ -2068,7 +2284,7 @@
   </section>
 
   <!-- SLIDE 11: Garbage In Garbage Out -->
-  <section class="section key-message" data-section="11" data-block="Block 2: Prompting">
+  <section class="section key-message" data-section="13" data-block="Block 2: Prompting">
     <p class="key-message-text">
       <span class="highlight">GARBAGE IN,</span><br>
       GARBAGE OUT.
@@ -2076,7 +2292,7 @@
   </section>
 
   <!-- SLIDE 12: 4 Pillars -->
-  <section class="section section-dark" data-section="12" data-block="Block 2: Prompting">
+  <section class="section section-dark" data-section="14" data-block="Block 2: Prompting">
     <div class="container">
       <div class="section-header">
         <span class="section-badge"><i class="ph-fill ph-columns"></i> Framework</span>
@@ -2119,8 +2335,8 @@
     </div>
   </section>
 
-  <!-- SLIDE 13: Bad vs Good Prompt -->
-  <section class="section section-dark" data-section="13" data-block="Block 2: Prompting">
+  <!-- SLIDE 14: Bad vs Good Prompt -->
+  <section class="section section-dark" data-section="14" data-block="Block 2: Prompting">
     <div class="container">
       <div class="section-header">
         <span class="section-badge"><i class="ph-fill ph-scales"></i> Comparison</span>
@@ -2160,8 +2376,8 @@ include clear call-to-action.</span></div>
     </div>
   </section>
 
-  <!-- SLIDE 14: Advanced Techniques -->
-  <section class="section section-dark" data-section="14" data-block="Block 2: Prompting">
+  <!-- SLIDE 15: Advanced Techniques -->
+  <section class="section section-dark" data-section="16" data-block="Block 2: Prompting">
     <div class="container-narrow">
       <div class="section-header">
         <span class="section-badge" style="background: var(--color-gold); color: var(--color-black);">
@@ -2191,8 +2407,8 @@ include clear call-to-action.</span></div>
     </div>
   </section>
 
-  <!-- SLIDE 15: Exercise - Prompt Battle -->
-  <section class="section section-dark" data-section="15" data-block="Block 2: Prompting">
+  <!-- SLIDE 17: Exercise - Prompt Battle -->
+  <section class="section section-dark" data-section="17" data-block="Block 2: Prompting">
     <div class="exercise-card">
       <div class="exercise-header">
         <span class="exercise-badge"><i class="ph-fill ph-trophy"></i> TEAM CHALLENGE</span>
@@ -2246,7 +2462,7 @@ include clear call-to-action.</span></div>
        ============================================ -->
 
   <!-- SLIDE 16: Coffee Break -->
-  <section class="section section-primary" data-section="16" data-block="☕ Break">
+  <section class="section section-primary" data-section="18" data-block="☕ Break">
     <div class="section-header">
       <h2 class="section-title" style="font-size: 5rem; color: var(--color-white);">☕</h2>
       <h2 class="section-title" style="color: var(--color-white);">COFFEE BREAK</h2>
@@ -2259,7 +2475,7 @@ include clear call-to-action.</span></div>
        ============================================ -->
 
   <!-- SLIDE 17: Block 3 Intro -->
-  <section class="section section-gradient" data-section="17" data-block="Block 3: Templates">
+  <section class="section section-gradient" data-section="19" data-block="Block 3: Templates">
     <div class="section-header">
       <span class="section-badge" style="background: var(--color-gold); color: var(--color-black);">
         <i class="ph-fill ph-rocket"></i> Block 3
@@ -2269,8 +2485,27 @@ include clear call-to-action.</span></div>
     </div>
   </section>
 
-  <!-- SLIDE 18: Template Key Message -->
-  <section class="section key-message" data-section="18" data-block="Block 3: Templates">
+  <!-- SLIDE 18: Template Video -->
+  <section class="section section-dark single-video-section" data-section="19" data-block="Block 3: Templates">
+    <div class="single-video-container">
+      <div class="section-header" style="margin-bottom: 30px;">
+        <span class="section-badge"><i class="ph-fill ph-video"></i> Watch This</span>
+        <h2 class="section-title">THE POWER OF <span class="highlight">SYSTEM PROMPTS</span></h2>
+        <p class="section-subtitle">See how professionals use templates</p>
+      </div>
+      <div class="video-wrapper-large">
+        <iframe 
+          src="https://www.youtube.com/embed/HGZ0Ek_aNgU" 
+          title="System Prompts Video"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 19: Template Key Message -->
+  <section class="section key-message" data-section="20" data-block="Block 3: Templates">
     <p class="key-message-text">
       <span class="highlight">Templates</span> are your superpower.<br>
       Build once, use forever.
@@ -2278,7 +2513,7 @@ include clear call-to-action.</span></div>
   </section>
 
   <!-- SLIDE 19: Why Templates -->
-  <section class="section section-dark" data-section="19" data-block="Block 3: Templates">
+  <section class="section section-dark" data-section="20" data-block="Block 3: Templates">
     <div class="container">
       <div class="section-header">
         <span class="section-badge"><i class="ph-fill ph-question"></i> The Why</span>
@@ -2309,6 +2544,13 @@ include clear call-to-action.</span></div>
           Teams that implement shared AI templates report 3x faster onboarding of new members and 60% reduction in "prompt debugging" time. Your perfect prompt shouldn't live only in your head!
         </div>
       </div>
+      
+      <div style="text-align: center; margin-top: 30px; position: relative; z-index: 100;">
+        <a href="https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools" target="_blank" 
+           style="display: inline-flex; align-items: center; gap: 12px; padding: 16px 32px; background: linear-gradient(135deg, #333 0%, #1a1a1a 100%); border: 2px solid #fff; color: #fff; font-family: var(--font-display); font-size: 1rem; font-weight: 700; text-decoration: none; text-transform: uppercase; letter-spacing: 0.1em; transition: all 0.3s ease; cursor: pointer; position: relative; z-index: 100;">
+          <i class="ph-fill ph-github-logo" style="font-size: 1.5rem;"></i> Browse 30,000+ System Prompts
+        </a>
+      </div>
     </div>
   </section>
 
@@ -2326,8 +2568,8 @@ include clear call-to-action.</span></div>
     </div>
   </section>
 
-  <!-- SLIDE 21: Template Builder -->
-  <section class="section section-dark" data-section="21" data-block="Block 3: Templates">
+  <!-- SLIDE 22: Template Builder -->
+  <section class="section section-dark" data-section="23" data-block="Block 3: Templates">
     <div class="container">
       <div class="section-header">
         <span class="section-badge"><i class="ph-fill ph-wrench"></i> Builder</span>
@@ -2340,8 +2582,8 @@ include clear call-to-action.</span></div>
     </div>
   </section>
 
-  <!-- SLIDE 22: Exercise - Build Template -->
-  <section class="section section-dark" data-section="22" data-block="Block 3: Templates">
+  <!-- SLIDE 23: Exercise - Build Template -->
+  <section class="section section-dark" data-section="23" data-block="Block 3: Templates">
     <div class="exercise-card">
       <div class="exercise-header">
         <span class="exercise-badge"><i class="ph-fill ph-hammer"></i> HANDS-ON</span>
@@ -2395,7 +2637,7 @@ include clear call-to-action.</span></div>
        ============================================ -->
 
   <!-- SLIDE 23: Block 4 Intro -->
-  <section class="section section-gradient" data-section="23" data-block="Block 4: Voice to Report">
+  <section class="section section-gradient" data-section="24" data-block="Block 4: Voice to Report">
     <div class="section-header">
       <span class="section-badge" style="background: var(--color-gold); color: var(--color-black);">
         <i class="ph-fill ph-microphone"></i> Block 4
@@ -2406,15 +2648,15 @@ include clear call-to-action.</span></div>
   </section>
 
   <!-- SLIDE 24: The Problem - Real Giphy -->
-  <section class="section section-dark" data-section="24" data-block="Block 4: Voice to Report">
+  <section class="section section-dark" data-section="25" data-block="Block 4: Voice to Report">
     <div class="giphy-container" style="max-width: 500px;">
       <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcjR0OXZ0ZXB0aHB4MzBtMjN3dnRvdHJrdm5iZmV5eGlkYnBnZnFyZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7btNa0RUYa5E7iiQ/giphy.gif" alt="Person talking while driving">
       <div class="giphy-caption">Andere Fahrer: Warum redet der mit sich selbst?<br><span style="font-size: 0.85em; opacity: 0.8;">Ich: Hab gerade 3 Besuchsberichte diktiert 😎</span></div>
     </div>
   </section>
 
-  <!-- SLIDE 25: The Workflow -->
-  <section class="section section-dark" data-section="25" data-block="Block 4: Voice to Report">
+  <!-- SLIDE 26: The Workflow -->
+  <section class="section section-dark" data-section="26" data-block="Block 4: Voice to Report">
     <div class="container">
       <div class="section-header">
         <span class="section-badge"><i class="ph-fill ph-magic-wand"></i> The Solution</span>
@@ -2455,7 +2697,7 @@ include clear call-to-action.</span></div>
   </section>
 
   <!-- SLIDE 26: Scenario Setup -->
-  <section class="section section-dark" data-section="26" data-block="Block 4: Voice to Report" style="padding: 0;">
+  <section class="section section-dark" data-section="27" data-block="Block 4: Voice to Report" style="padding: 0;">
     <div style="display: flex; width: 100%; height: 100vh; position: relative; z-index: 10;">
       <!-- Left: Client Image -->
       <div style="flex: 0 0 45%; position: relative; overflow: hidden;">
@@ -2467,7 +2709,7 @@ include clear call-to-action.</span></div>
         </div>
         <div style="position: absolute; top: 40px; right: 40px;">
           <span style="background: var(--color-gold); color: var(--color-black); padding: 8px 16px; font-family: var(--font-display); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">
-            <i class="ph-fill ph-user-focus"></i> Kundenbesuch
+            <i class="ph-fill ph-user-focus"></i> Customer Visit
           </span>
         </div>
       </div>
@@ -2513,7 +2755,7 @@ include clear call-to-action.</span></div>
   </section>
 
   <!-- SLIDE 27: Exercise - Voice Report -->
-  <section class="section section-dark" data-section="27" data-block="Block 4: Voice to Report">
+  <section class="section section-dark" data-section="28" data-block="Block 4: Voice to Report">
     <div class="exercise-card">
       <div class="exercise-header">
         <span class="exercise-badge"><i class="ph-fill ph-microphone"></i> GROUP EXERCISE</span>
@@ -2560,7 +2802,7 @@ include clear call-to-action.</span></div>
        ============================================ -->
 
   <!-- SLIDE 27: Block 5 Intro -->
-  <section class="section section-gradient" data-section="28" data-block="Block 5: Workflows">
+  <section class="section section-gradient" data-section="29" data-block="Block 5: Workflows">
     <div class="section-header">
       <span class="section-badge" style="background: var(--color-gold); color: var(--color-black);">
         <i class="ph-fill ph-gear-six"></i> Block 5
@@ -2571,7 +2813,7 @@ include clear call-to-action.</span></div>
   </section>
 
   <!-- SLIDE 28: Use Cases -->
-  <section class="section section-dark" data-section="29" data-block="Block 5: Workflows">
+  <section class="section section-dark" data-section="30" data-block="Block 5: Workflows">
     <div class="container">
       <div class="section-header">
         <span class="section-badge"><i class="ph-fill ph-briefcase"></i> Real World</span>
@@ -2603,8 +2845,8 @@ include clear call-to-action.</span></div>
     </div>
   </section>
 
-  <!-- SLIDE 30: Best Practices -->
-  <section class="section section-dark" data-section="30" data-block="Block 5: Workflows">
+  <!-- SLIDE 31: Best Practices -->
+  <section class="section section-dark" data-section="31" data-block="Block 5: Workflows">
     <div class="container-narrow">
       <div class="section-header">
         <span class="section-badge"><i class="ph-fill ph-check-square"></i> Best Practices</span>
@@ -2640,7 +2882,7 @@ include clear call-to-action.</span></div>
        ============================================ -->
 
   <!-- SLIDE 30: Key Message Final -->
-  <section class="section key-message" data-section="31" data-block="Block 6: Wrap-Up">
+  <section class="section key-message" data-section="32" data-block="Block 6: Wrap-Up">
     <p class="key-message-text">
       AI saves time, but<br>
       <span class="highlight">needs your expertise.</span><br>
@@ -2649,7 +2891,7 @@ include clear call-to-action.</span></div>
   </section>
 
   <!-- SLIDE 31: Key Takeaways -->
-  <section class="section section-dark" data-section="32" data-block="Block 6: Wrap-Up">
+  <section class="section section-dark" data-section="33" data-block="Block 6: Wrap-Up">
     <div class="container-narrow">
       <div class="section-header">
         <span class="section-badge"><i class="ph-fill ph-key"></i> Key Takeaways</span>
@@ -2670,7 +2912,7 @@ include clear call-to-action.</span></div>
   </section>
 
   <!-- SLIDE 32: Action Plan -->
-  <section class="section section-primary" data-section="33" data-block="Block 6: Wrap-Up">
+  <section class="section section-primary" data-section="34" data-block="Block 6: Wrap-Up">
     <div class="container" style="text-align: center;">
       <span class="section-badge" style="background: var(--color-black);"><i class="ph-fill ph-rocket-launch"></i> Your Mission</span>
       <h2 class="section-title" style="color: var(--color-white);">ACTION PLAN</h2>
@@ -2700,7 +2942,7 @@ include clear call-to-action.</span></div>
   </section>
 
   <!-- SLIDE 33: Resources & Handouts -->
-  <section class="section section-dark" data-section="34" data-block="Block 6: Wrap-Up">
+  <section class="section section-dark" data-section="35" data-block="Block 6: Wrap-Up">
     <div class="container">
       <div class="section-header">
         <span class="section-badge"><i class="ph-fill ph-download-simple"></i> Resources</span>
@@ -2737,7 +2979,7 @@ include clear call-to-action.</span></div>
   </section>
 
   <!-- SLIDE 34: Start Small Think Big -->
-  <section class="section key-message" data-section="35" data-block="Block 6: Wrap-Up">
+  <section class="section key-message" data-section="36" data-block="Block 6: Wrap-Up">
     <p class="key-message-text">
       Start <span class="highlight">small</span>, think <span class="highlight">big</span>.<br>
       <span style="font-size: 0.6em; opacity: 0.7;">One template. One workflow. One conversation at a time.</span>
@@ -2745,7 +2987,7 @@ include clear call-to-action.</span></div>
   </section>
 
   <!-- SLIDE 35: Thank You & Q&A -->
-  <section class="section section-gradient" data-section="36" data-block="Block 6: Wrap-Up">
+  <section class="section section-gradient" data-section="37" data-block="Block 6: Wrap-Up">
     <div class="container" style="text-align: center;">
       <div class="hero-title" style="font-size: clamp(3rem, 8vw, 6rem); margin-bottom: 32px;">
         <span class="white">THANK</span> <span class="purple">YOU!</span>
@@ -2950,6 +3192,50 @@ include clear call-to-action.</span></div>
       });
     }
     
+    // ========================================
+    // VIDEO CAROUSEL
+    // ========================================
+    let currentVideoIndex = 0;
+    const totalVideos = 3;
+    
+    function updateCarouselDots() {
+      const dots = document.querySelectorAll('.carousel-dot');
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentVideoIndex);
+      });
+    }
+    
+    function scrollToVideo(index) {
+      const track = document.getElementById('videoCarouselTrack');
+      if (!track) return;
+      
+      const slides = track.querySelectorAll('.video-slide');
+      if (slides[index]) {
+        const slideWidth = slides[index].offsetWidth + 24; // including gap
+        track.scrollTo({
+          left: index * slideWidth,
+          behavior: 'smooth'
+        });
+      }
+      currentVideoIndex = index;
+      updateCarouselDots();
+    }
+    
+    function nextVideo() {
+      currentVideoIndex = (currentVideoIndex + 1) % totalVideos;
+      scrollToVideo(currentVideoIndex);
+    }
+    
+    function prevVideo() {
+      currentVideoIndex = (currentVideoIndex - 1 + totalVideos) % totalVideos;
+      scrollToVideo(currentVideoIndex);
+    }
+    
+    function goToVideo(index) {
+      currentVideoIndex = index;
+      scrollToVideo(index);
+    }
+
     // ========================================
     // EXERCISE TIMERS
     // ========================================
